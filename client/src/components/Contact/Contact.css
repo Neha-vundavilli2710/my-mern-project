@@ -1,0 +1,225 @@
+.contact{
+
+    width:100%;
+
+    min-height:calc(100vh - 85px);
+
+    padding: 15px 7% 20px;
+
+    background:#f8fcf8;
+
+    scroll-margin-top:90px;
+
+}
+
+/* Heading */
+
+.contact-heading{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+.contact-heading span{
+
+    display:inline-block;
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+    padding:10px 22px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+.contact-heading h2{
+
+    font-size:38px;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+.contact-heading p{
+
+    color:#64748b;
+
+    font-size:16px;
+
+}
+
+/* Layout */
+
+.contact-container{
+
+    display:grid;
+
+    grid-template-columns:1.3fr .8fr;
+
+    gap:28px;
+
+    align-items:start;
+
+}
+
+/* Form */
+
+.contact-form{
+
+    background:#fff;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.contact-form input,
+.contact-form textarea{
+
+    width:100%;
+
+    padding:12px 15px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+
+    border-color:#22c55e;
+
+}
+
+.contact-form textarea{
+
+    resize:none;
+
+}
+
+.contact-form button{
+
+    padding: 13px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#22c55e;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.contact-form button:hover{
+
+    background:#16a34a;
+
+}
+
+/* Contact Info */
+
+.contact-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.info-card{
+
+    background:#fff;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+}
+
+.info-card svg{
+
+    font-size:24px;
+
+    color:#22c55e;
+
+}
+
+.info-card h4{
+
+    color:#0f172a;
+
+    margin-bottom:6px;
+
+}
+
+.info-card p{
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.contact{
+
+padding:50px 7%;
+
+}
+
+.contact-container{
+
+grid-template-columns:1fr;
+
+}
+
+}

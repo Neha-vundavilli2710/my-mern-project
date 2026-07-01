@@ -1,0 +1,306 @@
+/* ===========================
+   REGISTER PAGE
+=========================== */
+
+.register{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px 6%;
+    background:linear-gradient(135deg,#f8fbff,#f2fcf5);
+}
+
+/* ===========================
+   MAIN LAYOUT
+=========================== */
+
+.register-content{
+
+    width:100%;
+    max-width:1200px;
+
+    display:grid;
+    grid-template-columns:1fr 420px;
+
+    align-items:center;
+    gap:60px;
+}
+
+/* ===========================
+   LEFT SIDE
+=========================== */
+
+.register-left{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+/* ===========================
+   HEADING
+=========================== */
+
+.register-heading{
+    margin-bottom:20px;
+}
+
+.register-badge{
+
+    display:inline-block;
+
+    padding:10px 24px;
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+    border-radius:30px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    margin-bottom:18px;
+}
+
+.register-heading h1{
+
+    font-size:54px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    line-height:1.15;
+
+    margin-bottom:15px;
+}
+
+.register-heading p{
+
+    width:90%;
+
+    color:#64748b;
+
+    font-size:18px;
+
+    line-height:1.7;
+}
+
+/* ===========================
+   IMAGE
+=========================== */
+
+.register-image{
+
+    margin-top:20px;
+}
+
+.register-image img{
+
+    width:100%;
+    max-width:500px;
+    object-fit:contain;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.register-card{
+    width:100%;
+    max-width:420px;
+
+    background:#fff;
+    padding:28px;
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    box-sizing:border-box;
+}
+
+/* ===========================
+   FORM
+=========================== */
+
+.register-form{
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.two-fields{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+}
+
+.register-form input,
+.register-form select{
+
+    width:100%;
+    height:46px;
+
+    padding:0 16px;
+
+    border:1px solid #d9dee8;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
+
+    box-sizing:border-box;
+
+    transition:.3s;
+}
+
+.register-form input:focus,
+.register-form select:focus{
+
+    border-color:#22c55e;
+
+    box-shadow:0 0 0 3px rgba(34,197,94,.15);
+}
+
+.register-form button{
+
+    height:50px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#22c55e;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.register-form button:hover{
+
+    background:#16a34a;
+}
+
+/* ===========================
+   LOGIN
+=========================== */
+
+.login-link{
+
+    margin-top:18px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    font-size:15px;
+}
+
+.login-link a{
+
+    color:#22c55e;
+
+    font-weight:700;
+
+    text-decoration:none;
+}
+
+.login-link a:hover{
+
+    text-decoration:underline;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+.register-content{
+
+grid-template-columns:1fr;
+
+gap:40px;
+
+}
+
+.register-left{
+
+text-align:center;
+
+}
+
+.register-heading p{
+
+width:100%;
+
+}
+
+.register-image{
+
+display:flex;
+justify-content:center;
+
+}
+
+.register-image img{
+
+max-width:360px;
+
+}
+
+.register-card{
+
+max-width:500px;
+
+margin:auto;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.register{
+
+padding:40px 5%;
+
+}
+
+.register-heading h1{
+
+font-size:42px;
+
+}
+
+.register-heading p{
+
+font-size:16px;
+
+}
+
+.two-fields{
+
+grid-template-columns:1fr;
+
+}
+
+.register-card{
+
+padding:22px;
+
+}
+
+}
