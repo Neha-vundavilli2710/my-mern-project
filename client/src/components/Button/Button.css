@@ -1,0 +1,53 @@
+.custom-btn{
+
+    padding:15px 32px;
+
+    border:none;
+
+    border-radius:40px;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+
+}
+
+.primary{
+
+    background:#22C55E;
+
+    color:white;
+
+}
+
+.primary:hover{
+
+    background:#16A34A;
+
+    transform:translateY(-3px);
+
+}
+
+.secondary{
+
+    background:white;
+
+    color:#22C55E;
+
+    border:2px solid #22C55E;
+
+}
+
+.secondary:hover{
+
+    background:#22C55E;
+
+    color:white;
+
+    transform:translateY(-3px);
+
+}
