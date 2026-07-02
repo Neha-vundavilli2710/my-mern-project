@@ -1,18 +1,32 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 
+import WelcomeCard from "../../components/Dashboard/WelcomeCard";
+import StatsCards from "../../components/Dashboard/StatsCards";
+import MealCard from "../../components/Dashboard/MealCard";
+import NutritionSummary from "../../components/Dashboard/NutritionSummary";
+
+import "./Dashboard.css";
+
 function Dashboard() {
   return (
     <>
       <Sidebar />
 
-      <h1
-        style={{
-          marginLeft: "300px",
-          padding: "40px",
-        }}
-      >
-        Dashboard
-      </h1>
+      <main className="dashboard">
+
+        <WelcomeCard />
+
+        <StatsCards />
+
+        <div className="dashboard-bottom">
+
+          <MealCard />
+
+          <NutritionSummary />
+
+        </div>
+
+      </main>
     </>
   );
 }

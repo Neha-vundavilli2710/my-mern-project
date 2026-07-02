@@ -13,18 +13,22 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function Sidebar() {
-
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Later we'll remove JWT token here
+    navigate("/login");
+  };
+
   return (
-
     <>
-
-      {/* Mobile Toggle */}
+      {/* Mobile Menu Button */}
 
       <button
         className="menu-btn"
@@ -46,7 +50,7 @@ function Sidebar() {
 
       <aside className={`sidebar ${menuOpen ? "show" : ""}`}>
 
-        {/* Close Button */}
+        {/* Close */}
 
         <button
           className="close-btn"
@@ -79,7 +83,7 @@ function Sidebar() {
           </NavLink>
 
           <NavLink
-            to="/mealplanner"
+            to="/meal-planner"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
@@ -106,7 +110,7 @@ function Sidebar() {
           </NavLink>
 
           <NavLink
-            to="/weeklyplanner"
+            to="/weekly-planner"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
@@ -129,22 +133,19 @@ function Sidebar() {
 
         <div className="sidebar-footer">
 
-          <button className="logout-btn">
-
+          <button
+            className="logout-btn"
+            onClick={handleLogout}
+          >
             <FaSignOutAlt />
-
             Logout
-
           </button>
 
         </div>
 
       </aside>
-
     </>
-
   );
-
 }
 
 export default Sidebar;
