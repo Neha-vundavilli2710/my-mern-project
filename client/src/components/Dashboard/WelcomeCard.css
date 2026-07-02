@@ -6,7 +6,9 @@
 
     border-radius:20px;
 
-    padding:30px;
+    padding:18px 28px;
+
+    min-height:150px;
 
     display:flex;
 
@@ -14,7 +16,7 @@
 
     align-items:center;
 
-    margin-bottom:30px;
+    margin-bottom:16px;
 
     box-shadow:0 12px 25px rgba(34,197,94,.2);
 
@@ -35,6 +37,10 @@
     opacity:.95;
 
     line-height:1.6;
+
+    font-size:14px;
+    
+    margin-top:6px;
 
 }
 
