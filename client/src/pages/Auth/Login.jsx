@@ -1,12 +1,26 @@
 import "./Login.css";
 import loginImg from "../../assets/images/auth/login.png";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 
 function Login() {
 
     const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleLogin = (e) => {
+
+        e.preventDefault();
+
+        // Temporary navigation
+        // Later we'll connect the backend API here
+
+        navigate("/dashboard");
+
+    };
 
     return (
 
@@ -44,11 +58,15 @@ function Login() {
 
                 <div className="login-card">
 
-                    <form className="login-form">
+                    <form
+                        className="login-form"
+                        onSubmit={handleLogin}
+                    >
 
                         <input
                             type="email"
                             placeholder="Email Address"
+                            required
                         />
 
                         <div className="password-box">
@@ -56,6 +74,7 @@ function Login() {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Password"
+                                required
                             />
 
                             <span
@@ -84,7 +103,7 @@ function Login() {
 
                         </div>
 
-                        <button>
+                        <button type="submit">
                             Login
                         </button>
 
