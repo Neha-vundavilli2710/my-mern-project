@@ -118,13 +118,11 @@ function WeeklyPlanner() {
 
         <div className="weekly-header">
 
-          <h1>📅 Weekly Meal Planner</h1>
+          <h1>🍽 Meal Planner</h1>
 
-          <p>
-
-            Organize your meals for the week and maintain a balanced diet.
-
-          </p>
+            <p>
+              Plan your breakfast, lunch, and dinner for each day of the week.
+            </p>
 
         </div>
 

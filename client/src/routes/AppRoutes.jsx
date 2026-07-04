@@ -5,11 +5,12 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 
 import Dashboard from "../pages/Dashboard/Dashboard";
-import MealPlanner from "../pages/MealPlanner/MealPlanner";
 import BMI from "../pages/BMI/BMI";
 import Nutrition from "../pages/Nutrition/Nutrition";
 import WeeklyPlanner from "../pages/WeeklyPlanner/WeeklyPlanner";
 import Profile from "../pages/Profile/Profile";
+import DietRecommendation from "../pages/DietRecommendation/DietRecommendation";
+import History from "../pages/History/History";
 
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 
@@ -45,14 +46,7 @@ function AppRoutes() {
         }
       />
 
-      <Route
-        path="/meal-planner"
-        element={
-          <ProtectedRoute>
-            <MealPlanner />
-          </ProtectedRoute>
-        }
-      />
+    
 
       <Route
         path="/bmi"
@@ -73,7 +67,7 @@ function AppRoutes() {
       />
 
       <Route
-        path="/weekly-planner"
+        path="/meal-planner"
         element={
           <ProtectedRoute>
             <WeeklyPlanner />
@@ -86,6 +80,24 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Profile />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+      path="/diet-recommendation"
+        element={
+          <ProtectedRoute>
+            <DietRecommendation />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/history"
+        element={
+          <ProtectedRoute>
+            <History />
           </ProtectedRoute>
         }
       />

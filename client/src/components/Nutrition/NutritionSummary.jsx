@@ -1,38 +1,57 @@
+import { useEffect, useState } from "react";
 import "./NutritionSummary.css";
 
 function NutritionSummary() {
 
-  const nutrients = [
+  const [nutrients, setNutrients] = useState([]);
 
-    {
-      name: "Protein",
-      value: 90,
-      goal: 120,
-      color: "#22c55e",
-    },
+  useEffect(() => {
 
-    {
-      name: "Carbohydrates",
-      value: 180,
-      goal: 250,
-      color: "#3b82f6",
-    },
+    const weeklyMeals =
+      JSON.parse(localStorage.getItem("weeklyMeals")) || {};
 
-    {
-      name: "Fat",
-      value: 45,
-      goal: 70,
-      color: "#f59e0b",
-    },
+    const today = new Date().toLocaleDateString("en-US", {
+      weekday: "long",
+    });
 
-    {
-      name: "Fiber",
-      value: 22,
-      goal: 30,
-      color: "#8b5cf6",
-    },
+    const meals = weeklyMeals[today];
 
-  ];
+    let count = 0;
+
+    if (meals?.breakfast) count++;
+    if (meals?.lunch) count++;
+    if (meals?.dinner) count++;
+
+    const percentage = Math.round((count / 3) * 100);
+
+    setNutrients([
+      {
+        name: "Protein",
+        value: percentage,
+        goal: 100,
+        color: "#22c55e",
+      },
+      {
+        name: "Carbohydrates",
+        value: percentage,
+        goal: 100,
+        color: "#3b82f6",
+      },
+      {
+        name: "Fat",
+        value: percentage,
+        goal: 100,
+        color: "#f59e0b",
+      },
+      {
+        name: "Fiber",
+        value: percentage,
+        goal: 100,
+        color: "#8b5cf6",
+      },
+    ]);
+
+  }, []);
 
   return (
 
@@ -40,53 +59,36 @@ function NutritionSummary() {
 
       <h2>Nutrition Summary</h2>
 
-      {
+      {nutrients.map((item, index) => (
 
-        nutrients.map((item, index) => {
+        <div
+          className="nutrition-item"
+          key={index}
+        >
 
-          const percentage = Math.min(
-            (item.value / item.goal) * 100,
-            100
-          );
+          <div className="nutrition-header">
 
-          return (
+            <span>{item.name}</span>
+
+            <span>{item.value}%</span>
+
+          </div>
+
+          <div className="progress-bar">
 
             <div
-              className="nutrition-item"
-              key={index}
-            >
+              className="progress-fill"
+              style={{
+                width: `${item.value}%`,
+                background: item.color,
+              }}
+            ></div>
 
-              <div className="nutrition-header">
+          </div>
 
-                <span>{item.name}</span>
+        </div>
 
-                <span>
-
-                  {item.value}g / {item.goal}g
-
-                </span>
-
-              </div>
-
-              <div className="progress-bar">
-
-                <div
-                  className="progress-fill"
-                  style={{
-                    width: `${percentage}%`,
-                    background: item.color,
-                  }}
-                ></div>
-
-              </div>
-
-            </div>
-
-          );
-
-        })
-
-      }
+      ))}
 
     </div>
 

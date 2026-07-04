@@ -3,7 +3,6 @@ import "./Sidebar.css";
 import {
   FaLeaf,
   FaHome,
-  FaUtensils,
   FaHeartbeat,
   FaChartPie,
   FaCalendarAlt,
@@ -11,6 +10,8 @@ import {
   FaSignOutAlt,
   FaBars,
   FaTimes,
+  FaAppleAlt,
+  FaHistory,
 } from "react-icons/fa";
 
 import { NavLink, useNavigate } from "react-router-dom";
@@ -73,6 +74,8 @@ function Sidebar() {
 
         <nav className="sidebar-links">
 
+          {/* Dashboard */}
+
           <NavLink
             to="/dashboard"
             className="nav-item"
@@ -82,14 +85,7 @@ function Sidebar() {
             Dashboard
           </NavLink>
 
-          <NavLink
-            to="/meal-planner"
-            className="nav-item"
-            onClick={() => setMenuOpen(false)}
-          >
-            <FaUtensils />
-            Meal Planner
-          </NavLink>
+          {/* BMI */}
 
           <NavLink
             to="/bmi"
@@ -100,6 +96,19 @@ function Sidebar() {
             BMI Calculator
           </NavLink>
 
+          {/* Meal Planner */}
+
+          <NavLink
+            to="/meal-planner"
+            className="nav-item"
+            onClick={() => setMenuOpen(false)}
+          >
+            <FaCalendarAlt />
+            Meal Planner
+          </NavLink>
+
+          {/* Nutrition */}
+
           <NavLink
             to="/nutrition"
             className="nav-item"
@@ -109,14 +118,29 @@ function Sidebar() {
             Nutrition Tracker
           </NavLink>
 
+          {/* Diet Recommendation */}
+
           <NavLink
-            to="/weekly-planner"
+            to="/diet-recommendation"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
-            <FaCalendarAlt />
-            Weekly Planner
+            <FaAppleAlt />
+            Diet Recommendation
           </NavLink>
+
+          {/* History */}
+
+          <NavLink
+            to="/history"
+            className="nav-item"
+            onClick={() => setMenuOpen(false)}
+          >
+            <FaHistory />
+            History
+          </NavLink>
+
+          {/* Profile */}
 
           <NavLink
             to="/profile"

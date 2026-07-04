@@ -18,9 +18,7 @@ function Nutrition() {
 
           <h1>🥗 Nutrition Tracker</h1>
 
-          <p>
-            Monitor your daily nutrition intake and build healthy eating habits.
-          </p>
+          
 
         </div>
 

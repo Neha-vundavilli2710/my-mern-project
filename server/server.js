@@ -2,33 +2,50 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
-const connectDB = require("./db/config");
-const userRoutes = require("./routes/userRoute");
-const suggestionRoutes = require("./routes/suggestionRoute");
-
 dotenv.config();
+
+const connectDB = require("./db/config");
+
+const authRoutes = require("./routes/authRoute");
+const profileRoutes = require("./routes/profileRoute");
+const bmiRoutes = require("./routes/bmiRoute");
+const mealRoutes = require("./routes/mealRoute");
+const historyRoutes = require("./routes/historyRoute");
 
 const app = express();
 
-// Connect Database
 connectDB();
 
-// Middleware
 app.use(cors());
+
 app.use(express.json());
 
-// Routes
-app.use("/api/users", userRoutes);
-app.use("/api/suggestions", suggestionRoutes);
+app.use("/api/auth", authRoutes);
 
-// Default Route
+app.use("/api/profile", profileRoutes);
+
+app.use("/api/bmi", bmiRoutes);
+
+app.use("/api/meals", mealRoutes);
+
+app.use("/api/history", historyRoutes);
+
 app.get("/", (req, res) => {
-  res.send("Nutrition Assistant Backend Running...");
+
+    res.json({
+
+        success: true,
+
+        message: "Nutrition Assistant Backend Running"
+
+    });
+
 });
 
-// Server
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+
+    console.log(`Server running on port ${PORT}`);
+
 });

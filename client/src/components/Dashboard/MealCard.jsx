@@ -12,13 +12,7 @@ function MealCard({ meals }) {
 
         <h2>🍽 Today's Meals</h2>
 
-        <button className="add-meal-btn">
-
-          <FaPlus />
-
-          Add Meal
-
-        </button>
+        
 
       </div>
 
