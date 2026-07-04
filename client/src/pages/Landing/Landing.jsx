@@ -1,23 +1,25 @@
-import Navbar from "../../components/Navbar/Navbar";
-import Hero from "../../components/Hero/Hero";
-import Features from "../../components/Features/Features";
-import About from "../../components/About/About";
-import Contact from "../../components/Contact/Contact";
+import Navbar from "../../components/Landing/Navbar/Navbar";
+import Hero from "../../components/Landing/Hero/Hero";
+import Features from "../../components/Landing/Features/Features";
+import Stats from "../../components/Landing/Stats/Stats";
+import About from "../../components/Landing/About/About";
+import Contact from "../../components/Landing/Contact/Contact";
 
 function Landing() {
   return (
     <>
-    <Navbar />
+      <Navbar />
 
-    <Hero />
+      <Hero />
 
-    <Features />
+      <Features />
 
-    <About />
+      <Stats />
 
-    <Contact />
+      <About />
 
-</>
+      <Contact />
+    </>
   );
 }
 

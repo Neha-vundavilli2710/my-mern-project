@@ -1,0 +1,85 @@
+.meal-planner-page{
+
+    margin-left:260px;
+
+    padding:30px;
+
+    min-height:100vh;
+
+    background:#f6f9fc;
+}
+
+.meal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.meal-header h1{
+
+    font-size:34px;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+}
+
+.meal-header p{
+
+    color:#64748b;
+
+    font-size:16px;
+}
+
+.add-btn{
+
+    background:#22c55e;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.add-btn:hover{
+
+    background:#16a34a;
+}
+
+@media(max-width:992px){
+
+.meal-planner-page{
+
+margin-left:0;
+
+padding:90px 20px 30px;
+
+}
+
+.meal-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+}

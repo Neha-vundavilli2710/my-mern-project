@@ -1,8 +1,6 @@
 import "./Hero.css";
 
-import hero from "../../assets/images/hero/hero.png";
-
-import Stats from "../Stats/Stats";
+import heroImage from "../../../assets/images/hero/hero.png";
 
 function Hero() {
   return (
@@ -28,19 +26,16 @@ function Hero() {
           recommendations based on your lifestyle.
         </p>
 
-
       </div>
 
       <div className="hero-center">
 
         <img
-          src={hero}
+          src={heroImage}
           alt="Nutrition Hero"
         />
 
       </div>
-
-      <Stats />
 
     </section>
   );
