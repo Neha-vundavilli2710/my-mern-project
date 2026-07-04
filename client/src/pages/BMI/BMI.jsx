@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
 
@@ -10,10 +10,23 @@ import HealthTips from "../../components/BMI/HealthTips";
 import "./BMI.css";
 
 function BMI() {
-  const [result, setResult] = useState(null);
+
+  const [result, setResult] = useState(() => {
+
+    const savedBMI = localStorage.getItem("bmiResult");
+
+    return savedBMI ? JSON.parse(savedBMI) : null;
+
+  });
+
+  /* ==========================
+      CALCULATE BMI
+  ========================== */
 
   const calculateBMI = (data) => {
+
     const height = Number(data.height) / 100;
+
     const weight = Number(data.weight);
 
     if (!height || !weight) return;
@@ -23,58 +36,119 @@ function BMI() {
     let category = "";
 
     if (bmi < 18.5) {
+
       category = "Underweight";
-    } else if (bmi < 25) {
-      category = "Normal Weight";
-    } else if (bmi < 30) {
-      category = "Overweight";
-    } else {
-      category = "Obese";
+
     }
 
-    setResult({
+    else if (bmi < 25) {
+
+      category = "Normal Weight";
+
+    }
+
+    else if (bmi < 30) {
+
+      category = "Overweight";
+
+    }
+
+    else {
+
+      category = "Obese";
+
+    }
+
+    const bmiResult = {
+
       bmi: bmi.toFixed(1),
+
       category,
-    });
+
+    };
+
+    setResult(bmiResult);
+
+    localStorage.setItem(
+
+      "bmiResult",
+
+      JSON.stringify(bmiResult)
+
+    );
+
   };
 
   return (
+
     <>
+
       <Sidebar />
 
       <main className="bmi-page">
 
         <div className="bmi-header">
-          <h1>⚖️ BMI Calculator</h1>
+
+          <h1>
+
+            ⚖️ BMI Calculator
+
+          </h1>
+
           <p>
-            Calculate your Body Mass Index and understand your health
-            status.
+
+            Calculate your Body Mass Index and understand your health status.
+
           </p>
+
         </div>
 
         <div className="bmi-container">
 
           <div className="grid-card">
-            <BMIForm calculateBMI={calculateBMI} />
+
+            <BMIForm
+
+              calculateBMI={calculateBMI}
+
+            />
+
           </div>
 
           <div className="grid-card">
-            <BMIResult result={result} />
+
+            <BMIResult
+
+              result={result}
+
+            />
+
           </div>
 
           <div className="grid-card">
+
             <BMITable />
+
           </div>
 
           <div className="grid-card">
-            <HealthTips result={result} />
+
+            <HealthTips
+
+              result={result}
+
+            />
+
           </div>
 
         </div>
 
       </main>
+
     </>
+
   );
+
 }
 
 export default BMI;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   FaRulerVertical,
@@ -21,20 +21,47 @@ function BMIForm({ calculateBMI }) {
     goal: "Maintain Weight",
   });
 
+  useEffect(() => {
+
+    const savedProfile = localStorage.getItem("profile");
+
+    if (savedProfile) {
+
+      const profile = JSON.parse(savedProfile);
+
+      setForm({
+        height: profile.height || "",
+        weight: profile.weight || "",
+        age: profile.age || "",
+        gender: profile.gender || "Male",
+        goal: profile.goal || "Maintain Weight",
+      });
+
+    }
+
+  }, []);
+
   const handleChange = (e) => {
+
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
+
   };
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
+
     calculateBMI(form);
+
   };
 
   return (
+
     <>
+
       <h2 className="form-title">Enter Your Details</h2>
 
       <form className="bmi-form" onSubmit={handleSubmit}>
@@ -77,7 +104,6 @@ function BMIForm({ calculateBMI }) {
 
         <div className="input-group">
           <FaUser />
-
           <select
             name="gender"
             value={form.gender}
@@ -90,15 +116,14 @@ function BMIForm({ calculateBMI }) {
 
         <div className="input-group">
           <FaBullseye />
-
           <select
             name="goal"
             value={form.goal}
             onChange={handleChange}
           >
             <option>Weight Loss</option>
-            <option>Weight Gain</option>
             <option>Maintain Weight</option>
+            <option>Weight Gain</option>
           </select>
         </div>
 
@@ -108,8 +133,11 @@ function BMIForm({ calculateBMI }) {
         </button>
 
       </form>
+
     </>
+
   );
+
 }
 
 export default BMIForm;
