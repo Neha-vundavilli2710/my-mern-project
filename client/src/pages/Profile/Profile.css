@@ -1,0 +1,102 @@
+/* ==========================
+   PAGE
+========================== */
+
+.profile-page{
+
+    margin-left:260px;
+
+    min-height:100vh;
+
+    background:#f6f9fc;
+
+    padding:20px;
+
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.profile-header{
+
+    margin-bottom:20px;
+
+}
+
+.profile-header h1{
+
+    font-size:42px;
+
+    color:#0f172a;
+
+    margin-bottom:6px;
+
+}
+
+.profile-header p{
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+
+.profile-layout{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:20px;
+
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.profile-form-card,
+.profile-summary-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    border:1px solid #edf2f7;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1100px){
+
+.profile-layout{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:992px){
+
+.profile-page{
+
+margin-left:0;
+
+padding:90px 18px 20px;
+
+}
+
+}
