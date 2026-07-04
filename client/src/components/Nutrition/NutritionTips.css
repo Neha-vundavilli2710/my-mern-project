@@ -1,0 +1,97 @@
+.nutrition-tips{
+
+    height:100%;
+
+}
+
+.nutrition-tips h2{
+
+    font-size:28px;
+
+    color:#0f172a;
+
+    margin-bottom:20px;
+
+}
+
+.tip-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:12px 14px;
+
+    margin-bottom:12px;
+
+    background:#f8fafc;
+
+    border:1px solid #edf2f7;
+
+    border-radius:12px;
+
+    transition:.3s;
+
+}
+
+.tip-card:hover{
+
+    transform:translateX(5px);
+
+    background:#f0fdf4;
+
+}
+
+.tip-icon{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+
+    flex-shrink:0;
+
+}
+
+.tip-card span{
+
+    color:#334155;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+.tip-footer{
+
+    margin-top:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#22c55e;
+
+    font-weight:600;
+
+    font-size:14px;
+
+}

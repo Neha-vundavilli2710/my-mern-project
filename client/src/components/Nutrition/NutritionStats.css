@@ -1,0 +1,131 @@
+/* ==========================
+   GRID
+========================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    height:100%;
+
+}
+
+/* ==========================
+   CARD
+========================== */
+
+.stat-card{
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    transition:.3s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+/* ==========================
+   ICON
+========================== */
+
+.stat-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:28px;
+
+    flex-shrink:0;
+
+}
+
+/* ==========================
+   CONTENT
+========================== */
+
+.stat-content h3{
+
+    font-size:16px;
+
+    color:#64748b;
+
+    margin-bottom:6px;
+
+}
+
+.stat-content h2{
+
+    font-size:34px;
+
+    color:#0f172a;
+
+    margin-bottom:4px;
+
+}
+
+.stat-content h2 span{
+
+    font-size:18px;
+
+    color:#64748b;
+
+    margin-left:4px;
+
+}
+
+.stat-content p{
+
+    color:#22c55e;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.stats-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}

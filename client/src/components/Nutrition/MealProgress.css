@@ -1,0 +1,85 @@
+.meal-progress{
+
+    height:100%;
+
+}
+
+.meal-progress h2{
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+    color:#0f172a;
+
+}
+
+.meal-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 0;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+.meal-row:last-child{
+
+    border:none;
+
+}
+
+.meal-row h4{
+
+    font-size:17px;
+
+    color:#0f172a;
+
+    margin-bottom:4px;
+
+}
+
+.meal-row p{
+
+    font-size:14px;
+
+    color:#64748b;
+
+}
+
+.completed{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#22c55e;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.pending{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#f59e0b;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}

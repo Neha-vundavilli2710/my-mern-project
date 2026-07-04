@@ -1,0 +1,87 @@
+/* ==========================
+   CARD
+========================== */
+
+.nutrition-summary{
+
+    height:100%;
+
+}
+
+.nutrition-summary h2{
+
+    font-size:28px;
+
+    color:#0f172a;
+
+    margin-bottom:22px;
+
+}
+
+/* ==========================
+   ITEM
+========================== */
+
+.nutrition-item{
+
+    margin-bottom:22px;
+
+}
+
+.nutrition-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:8px;
+
+}
+
+.nutrition-header span:first-child{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#1e293b;
+
+}
+
+.nutrition-header span:last-child{
+
+    font-size:14px;
+
+    color:#64748b;
+
+}
+
+/* ==========================
+   PROGRESS
+========================== */
+
+.progress-bar{
+
+    width:100%;
+
+    height:12px;
+
+    background:#e2e8f0;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+    border-radius:30px;
+
+    transition:width .6s ease;
+
+}

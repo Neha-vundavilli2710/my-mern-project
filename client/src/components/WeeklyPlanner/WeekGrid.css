@@ -1,0 +1,19 @@
+.week-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+}
+
+@media(max-width:768px){
+
+.week-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}

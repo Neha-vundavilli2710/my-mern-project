@@ -1,0 +1,268 @@
+.day-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    border:1px solid #e5e7eb;
+
+    padding:18px;
+
+    transition:.3s;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.day-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.08);
+
+}
+
+/* ========================= */
+
+.day-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.day-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.day-title svg{
+
+    color:#22c55e;
+
+    font-size:18px;
+
+}
+
+.day-title h3{
+
+    font-size:20px;
+
+    color:#0f172a;
+
+}
+
+/* ========================= */
+
+.plan-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    border:none;
+
+    background:#22c55e;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.plan-btn:hover{
+
+    background:#16a34a;
+
+}
+
+/* ========================= */
+
+.meal-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+/* ========================= */
+
+.meal-item{
+
+    background:#f8fafc;
+
+    border-radius:10px;
+
+    padding:12px;
+
+    border:1px solid #edf2f7;
+
+}
+
+.meal-label{
+
+    display:block;
+
+    font-weight:600;
+
+    color:#0f172a;
+
+    margin-bottom:5px;
+
+}
+
+.meal-item p{
+
+    color:#64748b;
+
+    font-size:14px;
+
+}
+
+/* ========================= */
+
+.day-actions{
+
+    margin-top:18px;
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.edit-btn,
+.delete-btn{
+
+    flex:1;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:10px;
+
+    color:white;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:6px;
+
+}
+
+.edit-btn{
+
+    background:#f59e0b;
+
+}
+
+.delete-btn{
+
+    background:#ef4444;
+
+}
+
+
+
+/* ==========================
+   TODAY CARD
+========================== */
+
+.today-card{
+
+    border:2px solid #22c55e;
+
+}
+
+/* ==========================
+   STATUS BADGES
+========================== */
+
+.status-complete{
+
+    display:inline-block;
+
+    margin-top:4px;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+.status-partial{
+
+    display:inline-block;
+
+    margin-top:4px;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+.status-empty{
+
+    display:inline-block;
+
+    margin-top:4px;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    background:#f1f5f9;
+
+    color:#64748b;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}

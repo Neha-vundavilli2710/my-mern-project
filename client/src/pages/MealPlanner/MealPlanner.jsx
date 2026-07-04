@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
-import SearchBar from "../../components/Nutrition/SearchBar";
-import MealList from "../../components/Nutrition/MealList";
-import MealModal from "../../components/Nutrition/MealModal";
+import SearchBar from "../../components/MealPlanner/SearchBar";
+import MealList from "../../components/MealPlanner/MealList";
+import MealModal from "../../components/MealPlanner/MealModal";
 
 import "./MealPlanner.css";
 
