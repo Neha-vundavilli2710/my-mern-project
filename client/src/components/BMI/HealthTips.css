@@ -1,0 +1,61 @@
+.tips-container{
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.tips-container h2{
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+    color:#0f172a;
+
+}
+
+.tips-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    flex:1;
+
+}
+
+.tip-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    background:#f8fafc;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    color:#334155;
+
+}
+
+.tip-card svg{
+
+    color:#22c55e;
+
+    font-size:18px;
+
+    flex-shrink:0;
+
+}

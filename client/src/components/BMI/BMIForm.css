@@ -1,0 +1,138 @@
+/* ===========================
+   TITLE
+=========================== */
+
+.form-title{
+
+    font-size:32px;
+
+    color:#0f172a;
+
+    margin-bottom:18px;
+
+    font-weight:700;
+
+}
+
+/* ===========================
+   FORM
+=========================== */
+
+.bmi-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    flex:1;
+
+}
+
+/* ===========================
+   INPUT GROUP
+=========================== */
+
+.input-group{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    height:48px;
+
+    padding:0 15px;
+
+    border:1px solid #dbe4ee;
+
+    border-radius:12px;
+
+    background:white;
+
+    transition:.3s;
+
+}
+
+.input-group:hover{
+
+    border-color:#22c55e;
+
+}
+
+.input-group svg{
+
+    color:#22c55e;
+
+    font-size:17px;
+
+    min-width:18px;
+
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.input-group input,
+.input-group select{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    font-size:15px;
+
+    background:transparent;
+
+    color:#0f172a;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.calculate-btn{
+
+    margin-top:auto;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#22c55e;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.calculate-btn:hover{
+
+    background:#16a34a;
+
+    transform:translateY(-2px);
+
+}
