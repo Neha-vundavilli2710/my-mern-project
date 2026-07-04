@@ -6,11 +6,18 @@ import About from "../../components/Landing/About/About";
 import Contact from "../../components/Landing/Contact/Contact";
 
 function Landing() {
+
   return (
+
     <>
+
       <Navbar />
 
-      <Hero />
+      <section id="home">
+
+        <Hero />
+
+      </section>
 
       <Features />
 
@@ -19,8 +26,11 @@ function Landing() {
       <About />
 
       <Contact />
+
     </>
+
   );
+
 }
 
 export default Landing;

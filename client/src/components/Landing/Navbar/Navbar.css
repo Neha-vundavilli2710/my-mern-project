@@ -201,3 +201,25 @@ nav a:hover{
     }
 
 }
+
+.nav-link{
+
+    background:none;
+
+    border:none;
+
+    font:inherit;
+
+    color:inherit;
+
+    cursor:pointer;
+
+    padding:0;
+
+}
+
+.nav-link:hover{
+
+    color:#22c55e;
+
+}
