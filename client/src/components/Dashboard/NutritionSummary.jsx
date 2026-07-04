@@ -1,108 +1,64 @@
-import { useEffect, useState } from "react";
-
 import "./NutritionSummary.css";
 
-function NutritionSummary() {
+function NutritionSummary({
 
-  const [nutrition, setNutrition] = useState({
+  nutrition,
 
-    protein: 0,
+}) {
 
-    carbs: 0,
-
-    fat: 0,
-
-    calories: 0,
-
-  });
-
-  useEffect(() => {
-
-    const savedMeals = JSON.parse(
-
-      localStorage.getItem("meals")
-
-    ) || [];
-
-    let calories = 0;
-
-    let protein = 0;
-
-    let carbs = 0;
-
-    let fat = 0;
-
-    savedMeals.forEach((meal) => {
-
-      calories += Number(meal.calories);
-
-      protein += Number(meal.protein);
-
-      carbs += Number(meal.carbs);
-
-      fat += Number(meal.fat);
-
-    });
-
-    setNutrition({
-
-      calories,
-
-      protein,
-
-      carbs,
-
-      fat,
-
-    });
-
-  }, []);
-
-  const nutrients = [
+  const nutrients=[
 
     {
 
-      name: "Protein",
+      name:"Protein",
 
-      value: nutrition.protein,
+      value:nutrition.protein,
 
-      goal: 100,
+      goal:100,
+
+      unit:"g",
 
     },
 
     {
 
-      name: "Carbohydrates",
+      name:"Carbohydrates",
 
-      value: nutrition.carbs,
+      value:nutrition.carbs,
 
-      goal: 250,
+      goal:250,
 
-    },
-
-    {
-
-      name: "Fat",
-
-      value: nutrition.fat,
-
-      goal: 70,
+      unit:"g",
 
     },
 
     {
 
-      name: "Calories",
+      name:"Fat",
 
-      value: nutrition.calories,
+      value:nutrition.fat,
 
-      goal: 2200,
+      goal:70,
+
+      unit:"g",
 
     },
+
+    {
+
+      name:"Calories",
+
+      value:nutrition.calories,
+
+      goal:2200,
+
+      unit:" kcal",
+
+    }
 
   ];
 
-  return (
+  return(
 
     <div className="nutrition-card">
 
@@ -114,13 +70,13 @@ function NutritionSummary() {
 
       {
 
-        nutrients.map((item, index) => {
+        nutrients.map((item,index)=>{
 
-          const percentage = Math.min(
+          const percentage=Math.min(
 
             Math.round(
 
-              (item.value / item.goal) * 100
+              item.value/item.goal*100
 
             ),
 
@@ -128,7 +84,7 @@ function NutritionSummary() {
 
           );
 
-          return (
+          return(
 
             <div
 
@@ -150,15 +106,7 @@ function NutritionSummary() {
 
                   {item.value}
 
-                  {
-
-                    item.name === "Calories"
-
-                      ? " kcal"
-
-                      : " g"
-
-                  }
+                  {item.unit}
 
                 </span>
 
@@ -172,7 +120,7 @@ function NutritionSummary() {
 
                   style={{
 
-                    width: `${percentage}%`,
+                    width:`${percentage}%`
 
                   }}
 

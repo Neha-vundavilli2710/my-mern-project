@@ -1,58 +1,83 @@
 import "./MealCard.css";
+
 import { FaPlus } from "react-icons/fa";
 
-function MealCard() {
+function MealCard({ meals }) {
+
   return (
+
     <div className="meal-card">
 
       <div className="meal-header">
+
         <h2>🍽 Today's Meals</h2>
 
         <button className="add-meal-btn">
+
           <FaPlus />
+
           Add Meal
+
         </button>
+
       </div>
 
       <div className="meal-list">
 
-        <div className="meal-item">
-          <div>
-            <h3>Breakfast</h3>
-            <p>Oats, Banana & Milk</p>
-          </div>
+        {
 
-          <span className="meal-status completed">
-            Completed
-          </span>
-        </div>
+          meals.length === 0
 
-        <div className="meal-item">
-          <div>
-            <h3>Lunch</h3>
-            <p>Rice, Dal & Chicken Curry</p>
-          </div>
+          ?
 
-          <span className="meal-status pending">
-            Pending
-          </span>
-        </div>
+          <p>
 
-        <div className="meal-item">
-          <div>
-            <h3>Dinner</h3>
-            <p>Vegetable Soup & Salad</p>
-          </div>
+            No meals planned.
 
-          <span className="meal-status pending">
-            Pending
-          </span>
-        </div>
+          </p>
+
+          :
+
+          meals.map((meal)=>(
+
+            <div
+
+              className="meal-item"
+
+              key={meal.id}
+
+            >
+
+              <div>
+
+                <h3>{meal.type}</h3>
+
+                <p>{meal.food}</p>
+
+              </div>
+
+              <span
+
+                className={`meal-status ${meal.status.toLowerCase()}`}
+
+              >
+
+                {meal.status}
+
+              </span>
+
+            </div>
+
+          ))
+
+        }
 
       </div>
 
     </div>
+
   );
+
 }
 
 export default MealCard;
