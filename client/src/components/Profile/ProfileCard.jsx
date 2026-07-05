@@ -70,7 +70,7 @@ function ProfileCard() {
 
     catch (error) {
 
-      console.log(error);
+      alert("Something went wrong.");
 
     }
 

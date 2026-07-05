@@ -5,7 +5,6 @@ import "./Navbar.css";
 function Navbar() {
 
   const location = useLocation();
-
   const navigate = useNavigate();
 
   const handleSectionNavigation = (sectionId) => {
@@ -16,30 +15,29 @@ function Navbar() {
 
       setTimeout(() => {
 
+        window.scrollTo({
+          top: 0,
+          behavior: "auto",
+        });
+
         document
-
           .getElementById(sectionId)
-
           ?.scrollIntoView({
-
             behavior: "smooth",
-
+            block: "start",
           });
 
-      }, 100);
+      }, 200);
 
     }
 
     else {
 
       document
-
         .getElementById(sectionId)
-
         ?.scrollIntoView({
-
           behavior: "smooth",
-
+          block: "start",
         });
 
     }
@@ -51,89 +49,59 @@ function Navbar() {
     <header className="navbar">
 
       <div
-
         className="logo"
-
         onClick={() => handleSectionNavigation("home")}
-
-        style={{ cursor: "pointer" }}
-
       >
-
         🌿
-
-        <span>
-
-          Nutrition Assistant
-
-        </span>
-
+        <span>Nutrition Assistant</span>
       </div>
 
       <nav>
 
         <button
-
           className="nav-link"
-
           onClick={() => handleSectionNavigation("home")}
-
         >
-
           Home
-
         </button>
 
         <button
-
           className="nav-link"
-
           onClick={() => handleSectionNavigation("features")}
-
         >
-
           Features
-
         </button>
 
         <button
-
           className="nav-link"
-
           onClick={() => handleSectionNavigation("about")}
-
         >
-
           About
-
         </button>
 
         <button
-
           className="nav-link"
-
           onClick={() => handleSectionNavigation("contact")}
-
         >
-
           Contact
-
         </button>
 
       </nav>
 
       <div className="nav-buttons">
 
-        <Link className="login-btn" to="/login">
-
+        <Link
+          to="/login"
+          className="login-btn"
+        >
           Login
-
         </Link>
 
-        <Link className="register-btn" to="/register">
-
+        <Link
+          to="/register"
+          className="register-btn"
+        >
           Register
-
         </Link>
 
       </div>

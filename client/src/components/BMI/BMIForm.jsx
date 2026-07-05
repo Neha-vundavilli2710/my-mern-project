@@ -65,7 +65,7 @@ function BMIForm({ calculateBMI }) {
 
     catch (error) {
 
-      console.log(error);
+      alert("Something went wrong.");
 
     }
 

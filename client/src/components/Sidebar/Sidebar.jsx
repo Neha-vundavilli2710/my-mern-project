@@ -18,51 +18,75 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function Sidebar() {
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
 
+  /* ==========================
+        LOGOUT
+  ========================== */
+
   const handleLogout = () => {
 
-    localStorage.removeItem("token");
+    // Remove authentication data
 
+    localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    navigate("/login");
+    // Close mobile menu
 
-};
+    setMenuOpen(false);
+
+    // Redirect to Login
+
+    navigate("/login", { replace: true });
+
+  };
 
   return (
+
     <>
+
       {/* Mobile Menu Button */}
 
       <button
         className="menu-btn"
         onClick={() => setMenuOpen(true)}
       >
+
         <FaBars />
+
       </button>
 
       {/* Overlay */}
 
-      {menuOpen && (
-        <div
-          className="sidebar-overlay"
-          onClick={() => setMenuOpen(false)}
-        ></div>
-      )}
+      {
+
+        menuOpen && (
+
+          <div
+            className="sidebar-overlay"
+            onClick={() => setMenuOpen(false)}
+          ></div>
+
+        )
+
+      }
 
       {/* Sidebar */}
 
       <aside className={`sidebar ${menuOpen ? "show" : ""}`}>
 
-        {/* Close */}
+        {/* Close Button */}
 
         <button
           className="close-btn"
           onClick={() => setMenuOpen(false)}
         >
+
           <FaTimes />
+
         </button>
 
         {/* Logo */}
@@ -71,7 +95,11 @@ function Sidebar() {
 
           <FaLeaf />
 
-          <h2>Nutrition Assistant</h2>
+          <h2>
+
+            Nutrition Assistant
+
+          </h2>
 
         </div>
 
@@ -79,86 +107,93 @@ function Sidebar() {
 
         <nav className="sidebar-links">
 
-          {/* Dashboard */}
-
           <NavLink
             to="/dashboard"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
-            <FaHome />
-            Dashboard
-          </NavLink>
 
-          {/* BMI */}
+            <FaHome />
+
+            Dashboard
+
+          </NavLink>
 
           <NavLink
             to="/bmi"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
-            <FaHeartbeat />
-            BMI Calculator
-          </NavLink>
 
-          {/* Meal Planner */}
+            <FaHeartbeat />
+
+            BMI Calculator
+
+          </NavLink>
 
           <NavLink
             to="/meal-planner"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
-            <FaCalendarAlt />
-            Meal Planner
-          </NavLink>
 
-          {/* Nutrition */}
+            <FaCalendarAlt />
+
+            Meal Planner
+
+          </NavLink>
 
           <NavLink
             to="/nutrition"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
-            <FaChartPie />
-            Nutrition Tracker
-          </NavLink>
 
-          {/* Diet Recommendation */}
+            <FaChartPie />
+
+            Nutrition Tracker
+
+          </NavLink>
 
           <NavLink
             to="/diet-recommendation"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
-            <FaAppleAlt />
-            Diet Recommendation
-          </NavLink>
 
-          {/* History */}
+            <FaAppleAlt />
+
+            Diet Recommendation
+
+          </NavLink>
 
           <NavLink
             to="/history"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
-            <FaHistory />
-            History
-          </NavLink>
 
-          {/* Profile */}
+            <FaHistory />
+
+            History
+
+          </NavLink>
 
           <NavLink
             to="/profile"
             className="nav-item"
             onClick={() => setMenuOpen(false)}
           >
+
             <FaUser />
+
             Profile
+
           </NavLink>
 
         </nav>
 
-        {/* Logout */}
+        {/* Footer */}
 
         <div className="sidebar-footer">
 
@@ -166,15 +201,21 @@ function Sidebar() {
             className="logout-btn"
             onClick={handleLogout}
           >
+
             <FaSignOutAlt />
+
             Logout
+
           </button>
 
         </div>
 
       </aside>
+
     </>
+
   );
+
 }
 
 export default Sidebar;

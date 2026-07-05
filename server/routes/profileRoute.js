@@ -10,13 +10,26 @@ const {
 
 const authMiddleware = require("../middlewares/authMiddleware");
 
-router.get("/", authMiddleware, (req, res, next) => {
-  console.log("✅ GET /api/profile reached");
-  next();
-}, getProfile);
+/* ===========================
+   PROFILE ROUTES
+=========================== */
 
-router.post("/", authMiddleware, saveProfile);
+router.get(
+  "/",
+  authMiddleware,
+  getProfile
+);
 
-router.put("/", authMiddleware, updateProfile);
+router.post(
+  "/",
+  authMiddleware,
+  saveProfile
+);
+
+router.put(
+  "/",
+  authMiddleware,
+  updateProfile
+);
 
 module.exports = router;

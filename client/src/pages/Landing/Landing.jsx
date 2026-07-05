@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import Navbar from "../../components/Landing/Navbar/Navbar";
 import Hero from "../../components/Landing/Hero/Hero";
 import Features from "../../components/Landing/Features/Features";
@@ -7,30 +9,33 @@ import Contact from "../../components/Landing/Contact/Contact";
 
 function Landing() {
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-
     <>
-
       <Navbar />
 
       <section id="home">
-
         <Hero />
-
       </section>
 
-      <Features />
+      <section id="features">
+        <Features />
+      </section>
 
-      <Stats />
+      
 
-      <About />
+      <section id="about">
+        <About />
+      </section>
 
-      <Contact />
-
+      <section id="contact">
+        <Contact />
+      </section>
     </>
-
   );
-
 }
 
 export default Landing;

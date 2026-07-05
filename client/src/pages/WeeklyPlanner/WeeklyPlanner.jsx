@@ -50,7 +50,7 @@ function WeeklyPlanner() {
 
     catch (error) {
 
-      console.log(error);
+      alert("Something went wrong.");
 
     }
 
@@ -104,7 +104,7 @@ function WeeklyPlanner() {
 
     catch (error) {
 
-      console.log(error);
+      alert("Something went wrong.");
 
     }
 
@@ -140,7 +140,7 @@ function WeeklyPlanner() {
 
     catch (error) {
 
-      console.log(error);
+      alert("Something went wrong.");
 
     }
 

@@ -43,7 +43,7 @@ function BMI() {
 
     catch (error) {
 
-      console.log(error);
+      alert("Something went wrong.");
 
     }
 
@@ -103,7 +103,7 @@ function BMI() {
 
     catch (error) {
 
-      console.log(error);
+      alert("Something went wrong.");
 
     }
 

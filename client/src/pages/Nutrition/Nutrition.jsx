@@ -142,7 +142,7 @@ function Nutrition() {
 
     catch (error) {
 
-      console.log(error);
+      alert("Something went wrong.");
 
     }
 
@@ -164,11 +164,7 @@ function Nutrition() {
 
           </h1>
 
-          <p>
-
-            Monitor your daily nutrition intake.
-
-          </p>
+          
 
         </div>
 
