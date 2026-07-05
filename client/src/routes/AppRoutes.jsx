@@ -12,13 +12,13 @@ import Profile from "../pages/Profile/Profile";
 import DietRecommendation from "../pages/DietRecommendation/DietRecommendation";
 import History from "../pages/History/History";
 
-import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
-
 function AppRoutes() {
+
   return (
+
     <Routes>
 
-      {/* ---------------- Public Routes ---------------- */}
+      {/* Public Routes */}
 
       <Route
         path="/"
@@ -35,74 +35,44 @@ function AppRoutes() {
         element={<Register />}
       />
 
-      {/* ---------------- Protected Routes ---------------- */}
+      {/* Application Routes */}
 
       <Route
         path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
+        element={<Dashboard />}
       />
-
-    
 
       <Route
         path="/bmi"
-        element={
-          <ProtectedRoute>
-            <BMI />
-          </ProtectedRoute>
-        }
+        element={<BMI />}
       />
 
       <Route
         path="/nutrition"
-        element={
-          <ProtectedRoute>
-            <Nutrition />
-          </ProtectedRoute>
-        }
+        element={<Nutrition />}
       />
 
       <Route
         path="/meal-planner"
-        element={
-          <ProtectedRoute>
-            <WeeklyPlanner />
-          </ProtectedRoute>
-        }
+        element={<WeeklyPlanner />}
       />
 
       <Route
         path="/profile"
-        element={
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        }
+        element={<Profile />}
       />
 
       <Route
-      path="/diet-recommendation"
-        element={
-          <ProtectedRoute>
-            <DietRecommendation />
-          </ProtectedRoute>
-        }
+        path="/diet-recommendation"
+        element={<DietRecommendation />}
       />
 
       <Route
         path="/history"
-        element={
-          <ProtectedRoute>
-            <History />
-          </ProtectedRoute>
-        }
+        element={<History />}
       />
 
-      {/* ---------------- 404 ---------------- */}
+      {/* 404 */}
 
       <Route
         path="*"
@@ -110,7 +80,9 @@ function AppRoutes() {
       />
 
     </Routes>
+
   );
+
 }
 
 export default AppRoutes;
