@@ -1,114 +1,85 @@
-import { useEffect, useState } from "react";
 import "./NutritionStats.css";
-import { FaFire, FaTint } from "react-icons/fa";
 
-function NutritionStats() {
+import {
+  FaFire,
+  FaTint,
+} from "react-icons/fa";
+
+function NutritionStats({ nutrition }) {
 
   const stats = [
 
-  {
+    {
+      icon: <FaFire />,
+      title: "Calories",
+      value: nutrition?.calories || 0,
+      unit: "kcal",
+      goal: "Goal: 2200 kcal",
+      color: "#f97316",
+    },
 
-    icon: <FaFire />,
+    {
+      icon: <FaTint />,
+      title: "Water Intake",
+      value: 3,
+      unit: "L",
+      goal: "Goal: 3 L",
+      color: "#0ea5e9",
+    },
 
-    title: "Calories",
-
-    value: nutrition.calories,
-
-    unit: "kcal",
-
-    goal: "Goal: 2200 kcal",
-
-    color: "#f97316",
-
-  },
-
-  {
-
-    icon: <FaTint />,
-
-    title: "Water Intake",
-
-    value: "3",
-
-    unit: "L",
-
-    goal: "Goal: 3 L",
-
-    color: "#0ea5e9",
-
-  },
-
-];
-
-  useEffect(() => {
-
-    const weeklyMeals =
-      JSON.parse(localStorage.getItem("weeklyMeals")) || {};
-
-    const today = new Date().toLocaleDateString("en-US", {
-      weekday: "long",
-    });
-
-    const todayMeals = weeklyMeals[today];
-
-    let calories = 0;
-
-    if (todayMeals?.breakfast) calories += 400;
-    if (todayMeals?.lunch) calories += 700;
-    if (todayMeals?.dinner) calories += 600;
-
-    setStats({
-      calories,
-      water: 2.5,
-    });
-
-  }, []);
+  ];
 
   return (
 
     <div className="stats-grid">
 
-      <div className="stat-card">
+      {
 
-        <div
-          className="stat-icon"
-          style={{ background: "#f97316" }}
-        >
-          <FaFire />
-        </div>
+        stats.map((item, index) => (
 
-        <div className="stat-content">
+          <div
+            className="stat-card"
+            key={index}
+          >
 
-          <h3>Calories</h3>
+            <div
+              className="stat-icon"
+              style={{
+                background: item.color,
+              }}
+            >
 
-          <h2>{stats.calories}<span> kcal</span></h2>
+              {item.icon}
 
-          <p>Goal : 2200 kcal</p>
+            </div>
 
-        </div>
+            <div className="stat-content">
 
-      </div>
+              <h3>{item.title}</h3>
 
-      <div className="stat-card">
+              <h2>
 
-        <div
-          className="stat-icon"
-          style={{ background: "#0ea5e9" }}
-        >
-          <FaTint />
-        </div>
+                {item.value}
 
-        <div className="stat-content">
+                <span>
 
-          <h3>Water Intake</h3>
+                  {" "}
 
-          <h2>{stats.water}<span> L</span></h2>
+                  {item.unit}
 
-          <p>Goal : 3 L</p>
+                </span>
 
-        </div>
+              </h2>
 
-      </div>
+              <p>{item.goal}</p>
+
+            </div>
+
+          </div>
+
+        ))
+
+      }
 
     </div>
 

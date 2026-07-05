@@ -8,7 +8,7 @@ exports.getProfile = async (req, res) => {
 
     try {
 
-        const profile = await Profile.findOne({
+        let profile = await Profile.findOne({
 
             userId: req.user.id,
 
@@ -16,13 +16,21 @@ exports.getProfile = async (req, res) => {
 
         if (!profile) {
 
-            return res.status(404).json({
+            profile = {
 
-                success: false,
+                age: "",
 
-                message: "Profile not found",
+                gender: "",
 
-            });
+                height: "",
+
+                weight: "",
+
+                goal: "",
+
+                waterGoal: 3,
+
+            };
 
         }
 
@@ -51,7 +59,7 @@ exports.getProfile = async (req, res) => {
 };
 
 /* ===========================
-   SAVE / UPDATE PROFILE
+   SAVE PROFILE
 =========================== */
 
 exports.saveProfile = async (req, res) => {
@@ -86,7 +94,7 @@ exports.saveProfile = async (req, res) => {
 
         );
 
-        res.status(200).json({
+        res.json({
 
             success: true,
 
@@ -139,18 +147,6 @@ exports.updateProfile = async (req, res) => {
             }
 
         );
-
-        if (!profile) {
-
-            return res.status(404).json({
-
-                success: false,
-
-                message: "Profile not found",
-
-            });
-
-        }
 
         res.json({
 
