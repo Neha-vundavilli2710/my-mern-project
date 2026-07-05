@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import API from "../../services/api";
+
 import "./ProfileCard.css";
 
 import {
@@ -14,40 +16,77 @@ import {
 
 function ProfileCard() {
 
+  const [user, setUser] = useState({
+
+    fullName: "",
+
+    email: "",
+
+  });
+
   const [profile, setProfile] = useState({
 
-    name: "",
-    email: "",
     height: "",
+
     weight: "",
+
     goal: "",
+
     waterGoal: "",
 
   });
 
   useEffect(() => {
 
-    const savedProfile = localStorage.getItem("profile");
+    const savedUser = JSON.parse(
 
-    if (savedProfile) {
+      localStorage.getItem("user")
 
-      setProfile(JSON.parse(savedProfile));
+    );
+
+    if (savedUser) {
+
+      setUser(savedUser);
 
     }
 
+    loadProfile();
+
   }, []);
+
+  const loadProfile = async () => {
+
+    try {
+
+      const res = await API.get("/profile");
+
+      if (res.data.success) {
+
+        setProfile(res.data.profile);
+
+      }
+
+    }
+
+    catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
 
   let bmi = "--";
 
   if (profile.height && profile.weight) {
 
-    const h = Number(profile.height) / 100;
+    const height = Number(profile.height) / 100;
 
     bmi = (
 
       Number(profile.weight) /
 
-      (h * h)
+      (height * height)
 
     ).toFixed(1);
 
@@ -65,13 +104,17 @@ function ProfileCard() {
 
       <h2>
 
-        {profile.name || "Your Name"}
+        {user.fullName || "User"}
 
       </h2>
 
       <p>
 
-        {profile.email || "example@email.com"}
+        <FaEnvelope />
+
+        {" "}
+
+        {user.email || "example@email.com"}
 
       </p>
 
@@ -81,7 +124,11 @@ function ProfileCard() {
 
           <FaRulerVertical />
 
-          <span>Height</span>
+          <span>
+
+            Height
+
+          </span>
 
           <strong>
 
@@ -95,7 +142,11 @@ function ProfileCard() {
 
           <FaWeight />
 
-          <span>Weight</span>
+          <span>
+
+            Weight
+
+          </span>
 
           <strong>
 
@@ -109,7 +160,11 @@ function ProfileCard() {
 
           <FaHeartbeat />
 
-          <span>BMI</span>
+          <span>
+
+            BMI
+
+          </span>
 
           <strong>
 
@@ -123,7 +178,11 @@ function ProfileCard() {
 
           <FaBullseye />
 
-          <span>Goal</span>
+          <span>
+
+            Goal
+
+          </span>
 
           <strong>
 
@@ -137,7 +196,11 @@ function ProfileCard() {
 
           <FaTint />
 
-          <span>Water Goal</span>
+          <span>
+
+            Water Goal
+
+          </span>
 
           <strong>
 

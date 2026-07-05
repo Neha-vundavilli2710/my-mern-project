@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import API from "../../services/api";
+
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 import BMIForm from "../../components/BMI/BMIForm";
@@ -11,19 +13,43 @@ import "./BMI.css";
 
 function BMI() {
 
-  const [result, setResult] = useState(() => {
+  const [result, setResult] = useState(null);
 
-    const savedBMI = localStorage.getItem("bmiResult");
+  useEffect(() => {
 
-    return savedBMI ? JSON.parse(savedBMI) : null;
+    loadBMI();
 
-  });
+  }, []);
 
-  /* ==========================
-      CALCULATE BMI
-  ========================== */
+  const loadBMI = async () => {
 
-  const calculateBMI = (data) => {
+    try {
+
+      const res = await API.get("/bmi");
+
+      if (res.data.success && res.data.bmi) {
+
+        setResult({
+
+          bmi: res.data.bmi.bmi,
+
+          category: res.data.bmi.category,
+
+        });
+
+      }
+
+    }
+
+    catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
+
+  const calculateBMI = async (data) => {
 
     const height = Number(data.height) / 100;
 
@@ -69,13 +95,17 @@ function BMI() {
 
     setResult(bmiResult);
 
-    localStorage.setItem(
+    try {
 
-      "bmiResult",
+      await API.post("/bmi", bmiResult);
 
-      JSON.stringify(bmiResult)
+    }
 
-    );
+    catch (error) {
+
+      console.log(error);
+
+    }
 
   };
 
@@ -89,11 +119,7 @@ function BMI() {
 
         <div className="bmi-header">
 
-          <h1>
-
-            ⚖️ BMI Calculator
-
-          </h1>
+          <h1>⚖️ BMI Calculator</h1>
 
           <p>
 
@@ -107,21 +133,13 @@ function BMI() {
 
           <div className="grid-card">
 
-            <BMIForm
-
-              calculateBMI={calculateBMI}
-
-            />
+            <BMIForm calculateBMI={calculateBMI} />
 
           </div>
 
           <div className="grid-card">
 
-            <BMIResult
-
-              result={result}
-
-            />
+            <BMIResult result={result} />
 
           </div>
 
@@ -133,11 +151,7 @@ function BMI() {
 
           <div className="grid-card">
 
-            <HealthTips
-
-              result={result}
-
-            />
+            <HealthTips result={result} />
 
           </div>
 

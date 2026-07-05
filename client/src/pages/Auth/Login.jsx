@@ -5,127 +5,237 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 
+import API from "../../services/api";
+
 function Login() {
 
-    const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
-    const handleLogin = (e) => {
+  const [formData, setFormData] = useState({
 
-        e.preventDefault();
+    email: "",
 
-        // Temporary navigation
-        // Later we'll connect the backend API here
+    password: "",
 
-        navigate("/dashboard");
+  });
 
-    };
+  const handleChange = (e) => {
 
-    return (
+    setFormData({
 
-        <section className="login">
+      ...formData,
 
-            <div className="login-content">
+      [e.target.name]: e.target.value,
 
-                {/* LEFT */}
+    });
 
-                <div className="login-left">
+  };
 
-                    <span className="login-badge">
-                        🌿 Welcome Back
-                    </span>
+  const handleLogin = async (e) => {
 
-                    <h1>Login To Your Account</h1>
+    e.preventDefault();
 
-                    <p>
-                        Continue your healthy lifestyle journey by accessing
-                        your personalized nutrition dashboard and meal plans.
-                    </p>
+    try {
 
-                    <div className="login-image">
+      const res = await API.post(
 
-                        <img
-                            src={loginImg}
-                            alt="Login"
-                        />
+        "/auth/login",
 
-                    </div>
+        formData
 
-                </div>
+      );
 
-                {/* RIGHT */}
+      localStorage.setItem(
 
-                <div className="login-card">
+        "token",
 
-                    <form
-                        className="login-form"
-                        onSubmit={handleLogin}
-                    >
+        res.data.token
 
-                        <input
-                            type="email"
-                            placeholder="Email Address"
-                            required
-                        />
+      );
 
-                        <div className="password-box">
+      localStorage.setItem(
 
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Password"
-                                required
-                            />
+        "user",
 
-                            <span
-                                onClick={() =>
-                                    setShowPassword(!showPassword)
-                                }
-                            >
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
-                            </span>
+        JSON.stringify(res.data.user)
 
-                        </div>
+      );
 
-                        <div className="login-options">
+      alert(res.data.message);
 
-                            <label>
+      navigate("/dashboard");
 
-                                <input type="checkbox" />
+    }
 
-                                Remember Me
+    catch (error) {
 
-                            </label>
+      alert(
 
-                            <Link to="#">
-                                Forgot Password?
-                            </Link>
+        error.response?.data?.message ||
 
-                        </div>
+        "Login Failed"
 
-                        <button type="submit">
-                            Login
-                        </button>
+      );
 
-                    </form>
+    }
 
-                    <p className="register-link">
+  };
 
-                        Don't have an account?
+  return (
 
-                        <Link to="/register">
-                            Register
-                        </Link>
+    <section className="login">
 
-                    </p>
+      <div className="login-content">
 
-                </div>
+        {/* LEFT */}
+
+        <div className="login-left">
+
+          <span className="login-badge">
+
+            🌿 Welcome Back
+
+          </span>
+
+          <h1>Login To Your Account</h1>
+
+          <p>
+
+            Continue your healthy lifestyle journey by accessing your personalized dashboard.
+
+          </p>
+
+          <div className="login-image">
+
+            <img
+
+              src={loginImg}
+
+              alt="Login"
+
+            />
+
+          </div>
+
+        </div>
+
+        {/* RIGHT */}
+
+        <div className="login-card">
+
+          <form
+
+            className="login-form"
+
+            onSubmit={handleLogin}
+
+          >
+
+            <input
+
+              type="email"
+
+              name="email"
+
+              placeholder="Email Address"
+
+              value={formData.email}
+
+              onChange={handleChange}
+
+              required
+
+            />
+
+            <div className="password-box">
+
+              <input
+
+                type={showPassword ? "text" : "password"}
+
+                name="password"
+
+                placeholder="Password"
+
+                value={formData.password}
+
+                onChange={handleChange}
+
+                required
+
+              />
+
+              <span
+
+                onClick={() =>
+
+                  setShowPassword(!showPassword)
+
+                }
+
+              >
+
+                {
+
+                  showPassword
+
+                    ? <FaEyeSlash />
+
+                    : <FaEye />
+
+                }
+
+              </span>
 
             </div>
 
-        </section>
+            <div className="login-options">
 
-    );
+              <label>
+
+                <input type="checkbox" />
+
+                Remember Me
+
+              </label>
+
+              <Link to="#">
+
+                Forgot Password?
+
+              </Link>
+
+            </div>
+
+            <button type="submit">
+
+              Login
+
+            </button>
+
+          </form>
+
+          <p className="register-link">
+
+            Don't have an account?
+
+            <Link to="/register">
+
+              {" "}Register
+
+            </Link>
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  );
 
 }
 

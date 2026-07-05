@@ -23,9 +23,14 @@ function Sidebar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Later we'll remove JWT token here
+
+    localStorage.removeItem("token");
+
+    localStorage.removeItem("user");
+
     navigate("/login");
-  };
+
+};
 
   return (
     <>

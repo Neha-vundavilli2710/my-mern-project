@@ -4,10 +4,41 @@ import { FaFire, FaTint } from "react-icons/fa";
 
 function NutritionStats() {
 
-  const [stats, setStats] = useState({
-    calories: 0,
-    water: 2.5,
-  });
+  const stats = [
+
+  {
+
+    icon: <FaFire />,
+
+    title: "Calories",
+
+    value: nutrition.calories,
+
+    unit: "kcal",
+
+    goal: "Goal: 2200 kcal",
+
+    color: "#f97316",
+
+  },
+
+  {
+
+    icon: <FaTint />,
+
+    title: "Water Intake",
+
+    value: "3",
+
+    unit: "L",
+
+    goal: "Goal: 3 L",
+
+    color: "#0ea5e9",
+
+  },
+
+];
 
   useEffect(() => {
 

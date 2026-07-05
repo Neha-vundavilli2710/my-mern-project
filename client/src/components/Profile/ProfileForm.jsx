@@ -1,41 +1,76 @@
 import { useEffect, useState } from "react";
 
+import API from "../../services/api";
+
 import "./ProfileForm.css";
 
 function ProfileForm() {
 
-  const [profile, setProfile] = useState(() => {
+  const [profile, setProfile] = useState({
 
-    const savedProfile = localStorage.getItem("profile");
+    age: "",
 
-    return savedProfile
-      ? JSON.parse(savedProfile)
-      : {
-          name: "",
-          email: "",
-          phone: "",
-          age: "",
-          gender: "Male",
-          height: "",
-          weight: "",
-          activity: "Moderate",
-          goal: "Maintain Weight",
-          waterGoal: "3",
-        };
+    gender: "Male",
+
+    height: "",
+
+    weight: "",
+
+    goal: "Maintain Weight",
+
+    waterGoal: 3,
 
   });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
 
-    localStorage.setItem(
+    loadProfile();
 
-      "profile",
+  }, []);
 
-      JSON.stringify(profile)
+  const loadProfile = async () => {
 
-    );
+    try {
 
-  }, [profile]);
+      const res = await API.get("/profile");
+
+      if (res.data.success) {
+
+        setProfile({
+
+          age: res.data.profile.age || "",
+
+          gender: res.data.profile.gender || "Male",
+
+          height: res.data.profile.height || "",
+
+          weight: res.data.profile.weight || "",
+
+          goal: res.data.profile.goal || "Maintain Weight",
+
+          waterGoal: res.data.profile.waterGoal || 3,
+
+        });
+
+      }
+
+    }
+
+    catch (error) {
+
+      // Profile doesn't exist yet → keep defaults
+
+    }
+
+    finally {
+
+      setLoading(false);
+
+    }
+
+  };
 
   const handleChange = (e) => {
 
@@ -49,85 +84,53 @@ function ProfileForm() {
 
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
 
     e.preventDefault();
 
-    alert("Profile Saved Successfully!");
+    try {
+
+      const res = await API.post(
+
+        "/profile",
+
+        profile
+
+      );
+
+      alert(res.data.message);
+
+    }
+
+    catch (error) {
+
+      alert(
+
+        error.response?.data?.message ||
+
+        "Unable to save profile."
+
+      );
+
+    }
 
   };
+
+  if (loading) {
+
+    return <h3>Loading Profile...</h3>;
+
+  }
 
   return (
 
     <div className="profile-form">
 
-      <h2>Personal Information</h2>
+      <h2>Health Profile</h2>
 
       <form onSubmit={handleSubmit}>
 
         <div className="two-columns">
-
-          <div className="form-group">
-
-            <label>Full Name</label>
-
-            <input
-
-              type="text"
-
-              name="name"
-
-              value={profile.name}
-
-              onChange={handleChange}
-
-              required
-
-            />
-
-          </div>
-
-          <div className="form-group">
-
-            <label>Email</label>
-
-            <input
-
-              type="email"
-
-              name="email"
-
-              value={profile.email}
-
-              onChange={handleChange}
-
-              required
-
-            />
-
-          </div>
-
-        </div>
-
-        <div className="two-columns">
-
-          <div className="form-group">
-
-            <label>Phone</label>
-
-            <input
-
-              type="text"
-
-              name="phone"
-
-              value={profile.phone}
-
-              onChange={handleChange}
-
-            />
-
-          </div>
 
           <div className="form-group">
 
@@ -143,13 +146,11 @@ function ProfileForm() {
 
               onChange={handleChange}
 
+              required
+
             />
 
           </div>
-
-        </div>
-
-        <div className="two-columns">
 
           <div className="form-group">
 
@@ -169,29 +170,7 @@ function ProfileForm() {
 
               <option>Female</option>
 
-            </select>
-
-          </div>
-
-          <div className="form-group">
-
-            <label>Activity Level</label>
-
-            <select
-
-              name="activity"
-
-              value={profile.activity}
-
-              onChange={handleChange}
-
-            >
-
-              <option>Low</option>
-
-              <option>Moderate</option>
-
-              <option>High</option>
+              <option>Other</option>
 
             </select>
 
@@ -215,6 +194,8 @@ function ProfileForm() {
 
               onChange={handleChange}
 
+              required
+
             />
 
           </div>
@@ -232,6 +213,8 @@ function ProfileForm() {
               value={profile.weight}
 
               onChange={handleChange}
+
+              required
 
             />
 
@@ -278,6 +261,8 @@ function ProfileForm() {
               value={profile.waterGoal}
 
               onChange={handleChange}
+
+              required
 
             />
 

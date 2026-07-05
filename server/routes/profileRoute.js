@@ -2,40 +2,18 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+const {
+  getProfile,
+  saveProfile,
+  updateProfile,
+} = require("../controllers/profileController");
 
-    res.json({
+const authMiddleware = require("../middlewares/authMiddleware");
 
-        success: true,
+router.get("/", authMiddleware, getProfile);
 
-        message: "Get Profile"
+router.post("/", authMiddleware, saveProfile);
 
-    });
-
-});
-
-router.post("/", (req, res) => {
-
-    res.json({
-
-        success: true,
-
-        message: "Save Profile"
-
-    });
-
-});
-
-router.put("/", (req, res) => {
-
-    res.json({
-
-        success: true,
-
-        message: "Update Profile"
-
-    });
-
-});
+router.put("/", authMiddleware, updateProfile);
 
 module.exports = router;

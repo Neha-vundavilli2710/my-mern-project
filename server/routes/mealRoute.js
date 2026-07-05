@@ -2,52 +2,56 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+const authMiddleware = require("../middlewares/authMiddleware");
 
-    res.json({
+const {
 
-        success: true,
+    getMealPlan,
 
-        message: "Get Meal Plan"
+    saveMealPlan,
 
-    });
+    deleteMealPlan,
 
-});
+} = require("../controllers/mealController");
 
-router.post("/", (req, res) => {
+router.get(
 
-    res.json({
+    "/",
 
-        success: true,
+    authMiddleware,
 
-        message: "Save Meal Plan"
+    getMealPlan
 
-    });
+);
 
-});
+router.post(
 
-router.put("/", (req, res) => {
+    "/",
 
-    res.json({
+    authMiddleware,
 
-        success: true,
+    saveMealPlan
 
-        message: "Update Meal Plan"
+);
 
-    });
+router.put(
 
-});
+    "/",
 
-router.delete("/", (req, res) => {
+    authMiddleware,
 
-    res.json({
+    saveMealPlan
 
-        success: true,
+);
 
-        message: "Delete Meal Plan"
+router.delete(
 
-    });
+    "/",
 
-});
+    authMiddleware,
+
+    deleteMealPlan
+
+);
 
 module.exports = router;

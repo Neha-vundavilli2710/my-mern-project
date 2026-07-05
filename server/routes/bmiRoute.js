@@ -2,28 +2,18 @@ const express = require("express");
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
+const authMiddleware = require("../middlewares/authMiddleware");
 
-    res.json({
+const {
+  saveBMI,
+  getLatestBMI,
+  getBMIHistory,
+} = require("../controllers/bmiController");
 
-        success: true,
+router.post("/", authMiddleware, saveBMI);
 
-        message: "Save BMI"
+router.get("/", authMiddleware, getLatestBMI);
 
-    });
-
-});
-
-router.get("/", (req, res) => {
-
-    res.json({
-
-        success: true,
-
-        message: "Get BMI"
-
-    });
-
-});
+router.get("/history", authMiddleware, getBMIHistory);
 
 module.exports = router;

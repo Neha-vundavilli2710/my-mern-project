@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import API from "../../services/api";
+
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 import WeekGrid from "../../components/WeeklyPlanner/WeekGrid";
@@ -16,33 +18,43 @@ function WeeklyPlanner() {
 
   const [editingMeal, setEditingMeal] = useState(null);
 
-  const [weeklyMeals, setWeeklyMeals] = useState(() => {
-
-    const savedMeals = localStorage.getItem("weeklyMeals");
-
-    return savedMeals ? JSON.parse(savedMeals) : {};
-
-  });
-
-  /* ==========================
-      SAVE TO LOCAL STORAGE
-  ========================== */
+  const [weeklyMeals, setWeeklyMeals] = useState({});
 
   useEffect(() => {
 
-    localStorage.setItem(
+    loadMeals();
 
-      "weeklyMeals",
+  }, []);
 
-      JSON.stringify(weeklyMeals)
+  const loadMeals = async () => {
 
-    );
+    try {
 
-  }, [weeklyMeals]);
+      const res = await API.get("/meals");
 
-  /* ==========================
-      OPEN MODAL
-  ========================== */
+      if (res.data.success && res.data.mealPlan) {
+
+        const mealPlan = { ...res.data.mealPlan };
+
+        delete mealPlan._id;
+        delete mealPlan.userId;
+        delete mealPlan.createdAt;
+        delete mealPlan.updatedAt;
+        delete mealPlan.__v;
+
+        setWeeklyMeals(mealPlan);
+
+      }
+
+    }
+
+    catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
 
   const openModal = (day) => {
 
@@ -58,10 +70,6 @@ function WeeklyPlanner() {
 
   };
 
-  /* ==========================
-      CLOSE MODAL
-  ========================== */
-
   const closeModal = () => {
 
     setShowModal(false);
@@ -70,19 +78,35 @@ function WeeklyPlanner() {
 
   };
 
-  /* ==========================
-      SAVE MEAL
-  ========================== */
+  const saveMeal = async (day, meal) => {
 
-  const saveMeal = (day, meal) => {
-
-    setWeeklyMeals({
+    const updatedMeals = {
 
       ...weeklyMeals,
 
       [day]: meal,
 
-    });
+    };
+
+    setWeeklyMeals(updatedMeals);
+
+    try {
+
+      await API.post(
+
+        "/meals",
+
+        updatedMeals
+
+      );
+
+    }
+
+    catch (error) {
+
+      console.log(error);
+
+    }
 
     setShowModal(false);
 
@@ -90,11 +114,7 @@ function WeeklyPlanner() {
 
   };
 
-  /* ==========================
-      DELETE MEAL
-  ========================== */
-
-  const deleteMeal = (day) => {
+  const deleteMeal = async (day) => {
 
     const updatedMeals = {
 
@@ -105,6 +125,24 @@ function WeeklyPlanner() {
     delete updatedMeals[day];
 
     setWeeklyMeals(updatedMeals);
+
+    try {
+
+      await API.post(
+
+        "/meals",
+
+        updatedMeals
+
+      );
+
+    }
+
+    catch (error) {
+
+      console.log(error);
+
+    }
 
   };
 
@@ -120,9 +158,11 @@ function WeeklyPlanner() {
 
           <h1>🍽 Meal Planner</h1>
 
-            <p>
-              Plan your breakfast, lunch, and dinner for each day of the week.
-            </p>
+          <p>
+
+            Plan your breakfast, lunch and dinner for each day of the week.
+
+          </p>
 
         </div>
 
