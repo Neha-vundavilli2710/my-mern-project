@@ -6,6 +6,8 @@ const Profile = require("../models/Profile");
 
 exports.getProfile = async (req, res) => {
 
+    console.log("Decoded user:", req.user);
+
     try {
 
         let profile = await Profile.findOne({

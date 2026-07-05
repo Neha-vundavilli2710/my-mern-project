@@ -14,9 +14,7 @@ import "./Dashboard.css";
 function Dashboard() {
 
   const [profile, setProfile] = useState({});
-
   const [bmiResult, setBmiResult] = useState(null);
-
   const [meals, setMeals] = useState([]);
 
   useEffect(() => {
@@ -29,29 +27,13 @@ function Dashboard() {
 
     try {
 
-      /* User */
-
-      const user = JSON.parse(
-
-        localStorage.getItem("user")
-
-      );
-
       /* Profile */
 
       const profileRes = await API.get("/profile");
 
       if (profileRes.data.success) {
 
-        setProfile({
-
-          ...profileRes.data.profile,
-
-          name: user?.fullName,
-
-          email: user?.email,
-
-        });
+        setProfile(profileRes.data.profile);
 
       }
 
@@ -59,53 +41,31 @@ function Dashboard() {
 
       const bmiRes = await API.get("/bmi");
 
-      if (
+      if (bmiRes.data.success) {
 
-        bmiRes.data.success &&
-
-        bmiRes.data.bmi
-
-      ) {
-
-        setBmiResult({
-
-          bmi: bmiRes.data.bmi.bmi,
-
-          category: bmiRes.data.bmi.category,
-
-        });
+        setBmiResult(bmiRes.data.bmi);
 
       }
 
-      /* Meal Planner */
+      /* Meal Plan */
 
       const mealRes = await API.get("/meals");
 
-      if (
+      if (mealRes.data.success) {
 
-        mealRes.data.success &&
+        const mealPlan = mealRes.data.mealPlan || {};
 
-        mealRes.data.mealPlan
+        const today = new Date().toLocaleDateString("en-US", {
 
-      ) {
+          weekday: "long",
 
-        const today = new Date().toLocaleDateString(
+        });
 
-          "en-US",
-
-          {
-
-            weekday: "long",
-
-          }
-
-        );
-
-        const todayMeals = mealRes.data.mealPlan[today];
+        const todayMeal = mealPlan[today];
 
         const dashboardMeals = [];
 
-        if (todayMeals?.breakfast) {
+        if (todayMeal?.breakfast) {
 
           dashboardMeals.push({
 
@@ -113,7 +73,7 @@ function Dashboard() {
 
             type: "Breakfast",
 
-            food: todayMeals.breakfast,
+            food: todayMeal.breakfast,
 
             status: "Planned",
 
@@ -129,7 +89,7 @@ function Dashboard() {
 
         }
 
-        if (todayMeals?.lunch) {
+        if (todayMeal?.lunch) {
 
           dashboardMeals.push({
 
@@ -137,7 +97,7 @@ function Dashboard() {
 
             type: "Lunch",
 
-            food: todayMeals.lunch,
+            food: todayMeal.lunch,
 
             status: "Planned",
 
@@ -153,7 +113,7 @@ function Dashboard() {
 
         }
 
-        if (todayMeals?.dinner) {
+        if (todayMeal?.dinner) {
 
           dashboardMeals.push({
 
@@ -161,7 +121,7 @@ function Dashboard() {
 
             type: "Dinner",
 
-            food: todayMeals.dinner,
+            food: todayMeal.dinner,
 
             status: "Planned",
 
@@ -196,11 +156,8 @@ function Dashboard() {
     (total, meal) => {
 
       total.calories += meal.calories;
-
       total.protein += meal.protein;
-
       total.carbs += meal.carbs;
-
       total.fat += meal.fat;
 
       return total;
@@ -243,11 +200,7 @@ function Dashboard() {
 
           <MealCard meals={meals} />
 
-          <NutritionSummary
-
-            nutrition={nutrition}
-
-          />
+          <NutritionSummary nutrition={nutrition} />
 
         </div>
 

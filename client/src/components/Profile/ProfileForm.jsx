@@ -86,35 +86,45 @@ function ProfileForm() {
 
   const handleSubmit = async (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
+
+  try {
+
+    let res;
 
     try {
 
-      const res = await API.post(
-
-        "/profile",
-
-        profile
-
-      );
-
-      alert(res.data.message);
+      // Try updating first
+      res = await API.put("/profile", profile);
 
     }
 
-    catch (error) {
+    catch {
 
-      alert(
-
-        error.response?.data?.message ||
-
-        "Unable to save profile."
-
-      );
+      // If profile doesn't exist, create it
+      res = await API.post("/profile", profile);
 
     }
 
-  };
+    alert(res.data.message);
+
+    loadProfile();
+
+  }
+
+  catch (error) {
+
+    alert(
+
+      error.response?.data?.message ||
+
+      "Unable to save profile."
+
+    );
+
+  }
+
+};
 
   if (loading) {
 

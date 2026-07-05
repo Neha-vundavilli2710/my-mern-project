@@ -1,49 +1,11 @@
-import { useEffect, useState } from "react";
 import "./MealProgress.css";
-import { FaCheckCircle, FaClock } from "react-icons/fa";
 
-function MealProgress() {
+import {
+  FaCheckCircle,
+  FaClock,
+} from "react-icons/fa";
 
-  const [meals, setMeals] = useState([]);
-
-  useEffect(() => {
-
-    const weeklyMeals =
-      JSON.parse(localStorage.getItem("weeklyMeals")) || {};
-
-    const today = new Date().toLocaleDateString("en-US", {
-      weekday: "long",
-    });
-
-    const todayMeals = weeklyMeals[today];
-
-    if (!todayMeals) {
-
-      setMeals([]);
-
-      return;
-
-    }
-
-    setMeals([
-      {
-        type: "Breakfast",
-        meal: todayMeals.breakfast || "Not Planned",
-        status: todayMeals.breakfast ? "Completed" : "Pending",
-      },
-      {
-        type: "Lunch",
-        meal: todayMeals.lunch || "Not Planned",
-        status: todayMeals.lunch ? "Completed" : "Pending",
-      },
-      {
-        type: "Dinner",
-        meal: todayMeals.dinner || "Not Planned",
-        status: todayMeals.dinner ? "Completed" : "Pending",
-      },
-    ]);
-
-  }, []);
+function MealProgress({ meals }) {
 
   return (
 
@@ -51,46 +13,62 @@ function MealProgress() {
 
       <h2>Today's Meals</h2>
 
-      {meals.map((meal, index) => (
+      {
 
-        <div
-          className="meal-row"
-          key={index}
-        >
+        meals.length > 0 ? (
 
-          <div>
+          meals.map((meal, index) => (
 
-            <h4>{meal.type}</h4>
+            <div
+              className="meal-row"
+              key={index}
+            >
 
-            <p>{meal.meal}</p>
+              <div>
 
-          </div>
+                <h4>{meal.type}</h4>
 
-          {meal.status === "Completed" ? (
+                <p>{meal.meal}</p>
 
-            <span className="completed">
+              </div>
 
-              <FaCheckCircle />
+              {
 
-              Planned
+                meal.status === "Planned"
 
-            </span>
+                ?
 
-          ) : (
+                <span className="completed">
 
-            <span className="pending">
+                  <FaCheckCircle />
 
-              <FaClock />
+                  Planned
 
-              Not Planned
+                </span>
 
-            </span>
+                :
 
-          )}
+                <span className="pending">
 
-        </div>
+                  <FaClock />
 
-      ))}
+                  Not Planned
+
+                </span>
+
+              }
+
+            </div>
+
+          ))
+
+        )
+
+        :
+
+        <p>No meals planned for today.</p>
+
+      }
 
     </div>
 

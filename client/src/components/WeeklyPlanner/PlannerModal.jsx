@@ -24,10 +24,6 @@ function PlannerModal({
 
   });
 
-  /* ==========================
-      PREFILL WHEN EDITING
-  ========================== */
-
   useEffect(() => {
 
     if (meal) {
@@ -42,13 +38,21 @@ function PlannerModal({
 
       });
 
+    } else {
+
+      setMealData({
+
+        breakfast: "",
+
+        lunch: "",
+
+        dinner: "",
+
+      });
+
     }
 
   }, [meal]);
-
-  /* ==========================
-      HANDLE CHANGE
-  ========================== */
 
   const handleChange = (e) => {
 
@@ -62,21 +66,11 @@ function PlannerModal({
 
   };
 
-  /* ==========================
-      SAVE
-  ========================== */
-
   const handleSubmit = (e) => {
 
     e.preventDefault();
 
-    saveMeal(
-
-      day,
-
-      mealData
-
-    );
+    saveMeal(day, mealData);
 
   };
 
@@ -156,11 +150,7 @@ function PlannerModal({
 
             </button>
 
-            <button
-
-              type="submit"
-
-            >
+            <button type="submit">
 
               {meal ? "Update Plan" : "Save Plan"}
 

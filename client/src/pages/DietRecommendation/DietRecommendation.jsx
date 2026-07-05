@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import API from "../../services/api";
+
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 import {
@@ -14,23 +16,46 @@ import "./DietRecommendation.css";
 function DietRecommendation() {
 
   const [result, setResult] = useState({
+
     bmi: "--",
+
     category: "",
+
   });
 
   useEffect(() => {
 
-    const savedBMI = JSON.parse(
-      localStorage.getItem("bmiResult")
-    );
+    loadBMI();
 
-    if (savedBMI) {
+  }, []);
 
-      setResult(savedBMI);
+  const loadBMI = async () => {
+
+    try {
+
+      const res = await API.get("/bmi");
+
+      if (res.data.success && res.data.bmi) {
+
+        setResult({
+
+          bmi: res.data.bmi.bmi,
+
+          category: res.data.bmi.category,
+
+        });
+
+      }
 
     }
 
-  }, []);
+    catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
 
   let recommended = [];
 
@@ -43,16 +68,25 @@ function DietRecommendation() {
     case "Underweight":
 
       recommended = [
+
         "Milk",
+
         "Eggs",
+
         "Bananas",
+
         "Rice",
+
         "Peanut Butter",
+
       ];
 
       avoid = [
+
         "Skipping Meals",
+
         "Soft Drinks",
+
       ];
 
       water = "2.5 L";
@@ -62,16 +96,25 @@ function DietRecommendation() {
     case "Normal Weight":
 
       recommended = [
+
         "Fruits",
+
         "Vegetables",
+
         "Whole Grains",
+
         "Lean Protein",
+
         "Milk",
+
       ];
 
       avoid = [
+
         "Junk Food",
+
         "Sugary Drinks",
+
       ];
 
       water = "3 L";
@@ -81,17 +124,27 @@ function DietRecommendation() {
     case "Overweight":
 
       recommended = [
+
         "Oats",
+
         "Salads",
+
         "Brown Rice",
+
         "Fruits",
+
         "Green Tea",
+
       ];
 
       avoid = [
+
         "Fried Food",
+
         "Bakery Items",
+
         "Soft Drinks",
+
       ];
 
       water = "3 L";
@@ -101,16 +154,25 @@ function DietRecommendation() {
     case "Obese":
 
       recommended = [
+
         "Vegetables",
+
         "High Fiber Foods",
+
         "Low Fat Dairy",
+
         "Sprouts",
+
       ];
 
       avoid = [
+
         "Fast Food",
+
         "Sugar",
+
         "Processed Foods",
+
       ];
 
       water = "3.5 L";
@@ -120,10 +182,14 @@ function DietRecommendation() {
     default:
 
       recommended = [
+
         "Complete your BMI assessment first.",
+
       ];
 
       avoid = [];
+
+      water = "--";
 
   }
 
@@ -181,11 +247,14 @@ function DietRecommendation() {
 
             {
 
-              recommended.map((food,index)=>(
+              recommended.map((food, index) => (
 
                 <div
+
                   key={index}
+
                   className="food good"
+
                 >
 
                   <FaAppleAlt />
@@ -210,20 +279,31 @@ function DietRecommendation() {
 
             {
 
-              avoid.map((food,index)=>(
+              avoid.length > 0 ? (
 
-                <div
-                  key={index}
-                  className="food bad"
-                >
+                avoid.map((food, index) => (
 
-                  <FaTimesCircle />
+                  <div
 
-                  {food}
+                    key={index}
 
-                </div>
+                    className="food bad"
 
-              ))
+                  >
+
+                    <FaTimesCircle />
+
+                    {food}
+
+                  </div>
+
+                ))
+
+              ) : (
+
+                <p>No restrictions available.</p>
+
+              )
 
             }
 

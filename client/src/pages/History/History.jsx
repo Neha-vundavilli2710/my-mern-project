@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import API from "../../services/api";
+
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 import {
@@ -11,32 +13,44 @@ import "./History.css";
 
 function History() {
 
-  const [bmi, setBmi] = useState(null);
-  const [weeklyMeals, setWeeklyMeals] = useState({});
+  const [bmiHistory, setBmiHistory] = useState([]);
+
+  const [mealHistory, setMealHistory] = useState({});
 
   useEffect(() => {
 
-    const savedBMI = JSON.parse(
-      localStorage.getItem("bmiResult")
-    );
-
-    if (savedBMI) {
-      setBmi(savedBMI);
-    }
-
-    const savedMeals = JSON.parse(
-      localStorage.getItem("weeklyMeals")
-    );
-
-    if (savedMeals) {
-      setWeeklyMeals(savedMeals);
-    }
+    loadHistory();
 
   }, []);
+
+  const loadHistory = async () => {
+
+    try {
+
+      const res = await API.get("/history");
+
+      if (res.data.success) {
+
+        setBmiHistory(res.data.bmiHistory || []);
+
+        setMealHistory(res.data.mealHistory || {});
+
+      }
+
+    }
+
+    catch (error) {
+
+      console.log(error);
+
+    }
+
+  };
 
   return (
 
     <>
+
       <Sidebar />
 
       <main className="history-page">
@@ -46,7 +60,9 @@ function History() {
           <h1>📜 History</h1>
 
           <p>
-            View your saved BMI result and meal plans.
+
+            View your saved BMI results and meal plans.
+
           </p>
 
         </div>
@@ -61,25 +77,49 @@ function History() {
 
               <FaHeartbeat />
 
-              <h2>Latest BMI</h2>
+              <h2>BMI History</h2>
 
             </div>
 
             {
 
-              bmi ? (
+              bmiHistory.length > 0 ? (
 
-                <>
+                bmiHistory.map((item) => (
 
-                  <h3>BMI : {bmi.bmi}</h3>
+                  <div
 
-                  <p>{bmi.category}</p>
+                    key={item._id}
 
-                </>
+                    className="meal-history"
+
+                  >
+
+                    <h4>
+
+                      {new Date(item.createdAt).toLocaleDateString()}
+
+                    </h4>
+
+                    <p>
+
+                      BMI : {item.bmi}
+
+                    </p>
+
+                    <p>
+
+                      {item.category}
+
+                    </p>
+
+                  </div>
+
+                ))
 
               ) : (
 
-                <p>No BMI record available.</p>
+                <p>No BMI history available.</p>
 
               )
 
@@ -87,7 +127,7 @@ function History() {
 
           </div>
 
-          {/* Meal Plans */}
+          {/* Meals */}
 
           <div className="history-card">
 
@@ -101,39 +141,64 @@ function History() {
 
             {
 
-              Object.keys(weeklyMeals).length > 0 ? (
+              Object.keys(mealHistory).length > 0 ? (
 
-                Object.entries(weeklyMeals).map(
-                  ([day, meal]) => (
+                Object.entries(mealHistory)
 
-                    <div
-                      key={day}
-                      className="meal-history"
-                    >
+                  .filter(
 
-                      <h4>{day}</h4>
+                    ([key]) =>
 
-                      <p>
-                        🍳 {meal.breakfast || "-"}
-                      </p>
+                      !["_id","userId","createdAt","updatedAt","__v"]
 
-                      <p>
-                        🍛 {meal.lunch || "-"}
-                      </p>
-
-                      <p>
-                        🥗 {meal.dinner || "-"}
-                      </p>
-
-                    </div>
+                        .includes(key)
 
                   )
-                )
+
+                  .map(
+
+                    ([day, meal]) => (
+
+                      <div
+
+                        key={day}
+
+                        className="meal-history"
+
+                      >
+
+                        <h4>{day}</h4>
+
+                        <p>
+
+                          🍳 {meal?.breakfast || "-"}
+
+                        </p>
+
+                        <p>
+
+                          🍛 {meal?.lunch || "-"}
+
+                        </p>
+
+                        <p>
+
+                          🥗 {meal?.dinner || "-"}
+
+                        </p>
+
+                      </div>
+
+                    )
+
+                  )
 
               ) : (
 
                 <p>
+
                   No meal plans available.
+
                 </p>
 
               )

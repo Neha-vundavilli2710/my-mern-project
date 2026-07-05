@@ -1,24 +1,40 @@
 import "./DayCard.css";
 
 import {
+
   FaPlus,
+
   FaPen,
+
   FaTrash,
+
   FaCalendarDay,
+
 } from "react-icons/fa";
 
 function DayCard({
 
   day,
+
   meal,
+
   openModal,
+
   deleteMeal,
 
 }) {
 
-  const today = new Date().toLocaleDateString("en-US", {
-    weekday: "long",
-  });
+  const today = new Date().toLocaleDateString(
+
+    "en-US",
+
+    {
+
+      weekday: "long",
+
+    }
+
+  );
 
   const isToday = day === today;
 
@@ -26,7 +42,21 @@ function DayCard({
 
   let statusClass = "status-empty";
 
-  if (meal) {
+  const mealExists =
+
+    meal &&
+
+    (
+
+      meal.breakfast ||
+
+      meal.lunch ||
+
+      meal.dinner
+
+    );
+
+  if (mealExists) {
 
     const count = [
 
@@ -46,7 +76,7 @@ function DayCard({
 
     }
 
-    else if (count > 0) {
+    else {
 
       status = "Partial";
 
@@ -58,7 +88,11 @@ function DayCard({
 
   return (
 
-    <div className={`day-card ${isToday ? "today-card" : ""}`}>
+    <div
+
+      className={`day-card ${isToday ? "today-card" : ""}`}
+
+    >
 
       <div className="day-header">
 
@@ -106,7 +140,11 @@ function DayCard({
 
           </span>
 
-          <p>{meal?.breakfast || "Not Planned"}</p>
+          <p>
+
+            {meal?.breakfast || "Not Planned"}
+
+          </p>
 
         </div>
 
@@ -118,7 +156,11 @@ function DayCard({
 
           </span>
 
-          <p>{meal?.lunch || "Not Planned"}</p>
+          <p>
+
+            {meal?.lunch || "Not Planned"}
+
+          </p>
 
         </div>
 
@@ -130,47 +172,55 @@ function DayCard({
 
           </span>
 
-          <p>{meal?.dinner || "Not Planned"}</p>
+          <p>
+
+            {meal?.dinner || "Not Planned"}
+
+          </p>
 
         </div>
 
       </div>
 
-      {meal && (
+      {
 
-        <div className="day-actions">
+        mealExists && (
 
-          <button
+          <div className="day-actions">
 
-            className="edit-btn"
+            <button
 
-            onClick={() => openModal(day)}
+              className="edit-btn"
 
-          >
+              onClick={() => openModal(day)}
 
-            <FaPen />
+            >
 
-            Edit
+              <FaPen />
 
-          </button>
+              Edit
 
-          <button
+            </button>
 
-            className="delete-btn"
+            <button
 
-            onClick={() => deleteMeal(day)}
+              className="delete-btn"
 
-          >
+              onClick={() => deleteMeal(day)}
 
-            <FaTrash />
+            >
 
-            Delete
+              <FaTrash />
 
-          </button>
+              Delete
 
-        </div>
+            </button>
 
-      )}
+          </div>
+
+        )
+
+      }
 
     </div>
 

@@ -44,7 +44,7 @@ function WeekGrid({
 
             day={day}
 
-            meal={weeklyMeals?.[day]}
+            meal={weeklyMeals[day]}
 
             openModal={openModal}
 

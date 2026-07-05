@@ -8,11 +8,33 @@ exports.getMealPlan = async (req, res) => {
 
     try {
 
-        const mealPlan = await MealPlan.findOne({
+        let mealPlan = await MealPlan.findOne({
 
             userId: req.user.id,
 
         });
+
+        if (!mealPlan) {
+
+            mealPlan = {
+
+                Monday: {},
+
+                Tuesday: {},
+
+                Wednesday: {},
+
+                Thursday: {},
+
+                Friday: {},
+
+                Saturday: {},
+
+                Sunday: {},
+
+            };
+
+        }
 
         res.json({
 

@@ -1,94 +1,150 @@
-import { useEffect, useState } from "react";
 import "./NutritionSummary.css";
 
-function NutritionSummary() {
+function NutritionSummary({
 
-  const [nutrients, setNutrients] = useState([]);
+  nutrition,
 
-  useEffect(() => {
+}) {
 
-    const weeklyMeals =
-      JSON.parse(localStorage.getItem("weeklyMeals")) || {};
+  const nutrients = [
 
-    const today = new Date().toLocaleDateString("en-US", {
-      weekday: "long",
-    });
+    {
 
-    const meals = weeklyMeals[today];
+      name: "Protein",
 
-    let count = 0;
+      value: nutrition.protein,
 
-    if (meals?.breakfast) count++;
-    if (meals?.lunch) count++;
-    if (meals?.dinner) count++;
+      goal: 100,
 
-    const percentage = Math.round((count / 3) * 100);
+      color: "#22c55e",
 
-    setNutrients([
-      {
-        name: "Protein",
-        value: percentage,
-        goal: 100,
-        color: "#22c55e",
-      },
-      {
-        name: "Carbohydrates",
-        value: percentage,
-        goal: 100,
-        color: "#3b82f6",
-      },
-      {
-        name: "Fat",
-        value: percentage,
-        goal: 100,
-        color: "#f59e0b",
-      },
-      {
-        name: "Fiber",
-        value: percentage,
-        goal: 100,
-        color: "#8b5cf6",
-      },
-    ]);
+      unit: "g",
 
-  }, []);
+    },
+
+    {
+
+      name: "Carbohydrates",
+
+      value: nutrition.carbs,
+
+      goal: 250,
+
+      color: "#3b82f6",
+
+      unit: "g",
+
+    },
+
+    {
+
+      name: "Fat",
+
+      value: nutrition.fat,
+
+      goal: 70,
+
+      color: "#f59e0b",
+
+      unit: "g",
+
+    },
+
+    {
+
+      name: "Calories",
+
+      value: nutrition.calories,
+
+      goal: 2200,
+
+      color: "#8b5cf6",
+
+      unit: " kcal",
+
+    },
+
+  ];
 
   return (
 
     <div className="nutrition-summary">
 
-      <h2>Nutrition Summary</h2>
+      <h2>
 
-      {nutrients.map((item, index) => (
+        Nutrition Summary
 
-        <div
-          className="nutrition-item"
-          key={index}
-        >
+      </h2>
 
-          <div className="nutrition-header">
+      {
 
-            <span>{item.name}</span>
+        nutrients.map((item, index) => {
 
-            <span>{item.value}%</span>
+          const percentage = Math.min(
 
-          </div>
+            Math.round(
 
-          <div className="progress-bar">
+              (item.value / item.goal) * 100
+
+            ),
+
+            100
+
+          );
+
+          return (
 
             <div
-              className="progress-fill"
-              style={{
-                width: `${item.value}%`,
-                background: item.color,
-              }}
-            ></div>
 
-          </div>
+              className="nutrition-item"
 
-        </div>
+              key={index}
 
-      ))}
+            >
+
+              <div className="nutrition-header">
+
+                <span>
+
+                  {item.name}
+
+                </span>
+
+                <span>
+
+                  {item.value}
+
+                  {item.unit}
+
+                </span>
+
+              </div>
+
+              <div className="progress-bar">
+
+                <div
+
+                  className="progress-fill"
+
+                  style={{
+
+                    width: `${percentage}%`,
+
+                    background: item.color,
+
+                  }}
+
+                ></div>
+
+              </div>
+
+            </div>
+
+          );
+
+        })
+
+      }
 
     </div>
 
