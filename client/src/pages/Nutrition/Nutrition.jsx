@@ -9,6 +9,8 @@ import NutritionSummary from "../../components/Nutrition/NutritionSummary";
 import MealProgress from "../../components/Nutrition/MealProgress";
 import NutritionTips from "../../components/Nutrition/NutritionTips";
 
+import calculateNutrition from "../../utils/calculateNutrition";
+
 import "./Nutrition.css";
 
 function Nutrition() {
@@ -77,10 +79,15 @@ function Nutrition() {
 
           });
 
-          calories += 400;
-          protein += 20;
-          carbs += 45;
-          fat += 10;
+          const n = calculateNutrition(meals.breakfast);
+
+          calories += n.calories;
+
+          protein += n.protein;
+
+          carbs += n.carbs;
+
+          fat += n.fat;
 
         }
 
@@ -96,10 +103,15 @@ function Nutrition() {
 
           });
 
-          calories += 700;
-          protein += 35;
-          carbs += 70;
-          fat += 18;
+          const n = calculateNutrition(meals.lunch);
+
+          calories += n.calories;
+
+          protein += n.protein;
+
+          carbs += n.carbs;
+
+          fat += n.fat;
 
         }
 
@@ -115,10 +127,15 @@ function Nutrition() {
 
           });
 
-          calories += 600;
-          protein += 30;
-          carbs += 55;
-          fat += 15;
+          const n = calculateNutrition(meals.dinner);
+
+          calories += n.calories;
+
+          protein += n.protein;
+
+          carbs += n.carbs;
+
+          fat += n.fat;
 
         }
 
@@ -163,8 +180,6 @@ function Nutrition() {
             🥗 Nutrition Tracker
 
           </h1>
-
-          
 
         </div>
 

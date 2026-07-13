@@ -11,6 +11,7 @@ const profileRoutes = require("./routes/profileRoute");
 const bmiRoutes = require("./routes/bmiRoute");
 const mealRoutes = require("./routes/mealRoute");
 const historyRoutes = require("./routes/historyRoute");
+const suggestionRoutes = require("./routes/suggestionRoute");
 
 const app = express();
 
@@ -34,6 +35,8 @@ app.use("/api/bmi", bmiRoutes);
 app.use("/api/meals", mealRoutes);
 
 app.use("/api/history", historyRoutes);
+
+app.use("/api/suggestions", suggestionRoutes); 
 
 app.get("/", (req, res) => {
 

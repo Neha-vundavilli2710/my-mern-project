@@ -152,6 +152,8 @@ exports.login = async (req, res) => {
 
                 id: user._id,
 
+                role: user.role,
+
             },
 
             process.env.JWT_SECRET,
@@ -179,6 +181,8 @@ exports.login = async (req, res) => {
                 fullName: user.fullName,
 
                 email: user.email,
+
+                role: user.role,
 
             },
 

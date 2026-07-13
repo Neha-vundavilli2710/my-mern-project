@@ -1,0 +1,37 @@
+// A lookup table of common foods with approximate nutrition per typical serving.
+// Values are reasonable estimates (kcal, protein/carbs/fat in grams).
+const foodDatabase = {
+  rice: { calories: 205, protein: 4, carbs: 45, fat: 0.5 },
+  roti: { calories: 120, protein: 3, carbs: 18, fat: 3 },
+  chapati: { calories: 120, protein: 3, carbs: 18, fat: 3 },
+  dal: { calories: 180, protein: 12, carbs: 27, fat: 3 },
+  paneer: { calories: 265, protein: 18, carbs: 6, fat: 20 },
+  curd: { calories: 98, protein: 11, carbs: 4, fat: 4 },
+  yogurt: { calories: 98, protein: 11, carbs: 4, fat: 4 },
+  milk: { calories: 122, protein: 8, carbs: 12, fat: 5 },
+  egg: { calories: 78, protein: 6, carbs: 1, fat: 5 },
+  eggs: { calories: 156, protein: 12, carbs: 2, fat: 10 },
+  oats: { calories: 150, protein: 5, carbs: 27, fat: 3 },
+  bread: { calories: 80, protein: 3, carbs: 15, fat: 1 },
+  sandwich: { calories: 250, protein: 9, carbs: 30, fat: 9 },
+  banana: { calories: 105, protein: 1, carbs: 27, fat: 0.3 },
+  apple: { calories: 95, protein: 0.5, carbs: 25, fat: 0.3 },
+  salad: { calories: 120, protein: 3, carbs: 15, fat: 6 },
+  chicken: { calories: 335, protein: 43, carbs: 0, fat: 17 },
+  fish: { calories: 206, protein: 22, carbs: 0, fat: 12 },
+  soup: { calories: 100, protein: 5, carbs: 12, fat: 3 },
+  pasta: { calories: 350, protein: 12, carbs: 65, fat: 5 },
+  noodles: { calories: 380, protein: 8, carbs: 68, fat: 9 },
+  potato: { calories: 160, protein: 4, carbs: 37, fat: 0.2 },
+  vegetables: { calories: 90, protein: 4, carbs: 18, fat: 0.5 },
+  idli: { calories: 60, protein: 2, carbs: 12, fat: 0.3 },
+  dosa: { calories: 168, protein: 4, carbs: 28, fat: 4 },
+  poha: { calories: 180, protein: 4, carbs: 30, fat: 5 },
+  upma: { calories: 190, protein: 5, carbs: 32, fat: 5 },
+  nuts: { calories: 170, protein: 6, carbs: 6, fat: 15 },
+  juice: { calories: 110, protein: 1, carbs: 26, fat: 0.2 },
+  tea: { calories: 40, protein: 1, carbs: 6, fat: 1 },
+  coffee: { calories: 40, protein: 1, carbs: 6, fat: 1 },
+};
+
+export default foodDatabase;

@@ -11,6 +11,7 @@ import WeeklyPlanner from "../pages/WeeklyPlanner/WeeklyPlanner";
 import Profile from "../pages/Profile/Profile";
 import DietRecommendation from "../pages/DietRecommendation/DietRecommendation";
 import History from "../pages/History/History";
+import Admin from "../pages/Admin/Admin";
 
 function AppRoutes() {
 
@@ -70,6 +71,11 @@ function AppRoutes() {
       <Route
         path="/history"
         element={<History />}
+      />
+
+      <Route
+        path="/admin"
+        element={<Admin />}
       />
 
       {/* 404 */}

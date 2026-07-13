@@ -23,6 +23,10 @@ function DietRecommendation() {
 
   });
 
+  const [suggestion, setSuggestion] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
 
     loadBMI();
@@ -52,6 +56,36 @@ function DietRecommendation() {
     catch (error) {
 
       alert("Something went wrong.");
+
+    }
+
+  };
+
+  const generateSuggestion = async () => {
+
+    setLoading(true);
+
+    try {
+
+      const res = await API.post("/suggestions");
+
+      if (res.data.success) {
+
+        setSuggestion(res.data.suggestion);
+
+      }
+
+    }
+
+    catch (error) {
+
+      alert(error.response?.data?.message || "Could not generate suggestion.");
+
+    }
+
+    finally {
+
+      setLoading(false);
 
     }
 
@@ -324,6 +358,31 @@ function DietRecommendation() {
             Water Daily
 
           </div>
+
+          <button
+            className="generate-btn"
+            onClick={generateSuggestion}
+            disabled={loading}
+          >
+            {loading ? "Generating..." : "Get Detailed Suggestion"}
+          </button>
+
+          {suggestion && (
+            <div className="suggestion-card">
+              <p>
+                Age: {suggestion.age} &nbsp; Height: {suggestion.height} &nbsp; Weight: {suggestion.weight}
+              </p>
+              <p><strong>Timing:</strong> {suggestion.timing}</p>
+              <p><strong>Calorie Intake:</strong> {suggestion.calorieIntake} kcal</p>
+              <p><strong>Walk:</strong> {suggestion.walk}</p>
+              <p><strong>Carbohydrate Needs:</strong> {suggestion.carbohydrateNeeds}</p>
+              <p><strong>Protein Needs:</strong> {suggestion.proteinNeeds}</p>
+              <p><strong>BMI:</strong> {suggestion.bmi}</p>
+              <div className="suggestion-text">
+                <strong>Suggestion:</strong> {suggestion.suggestion}
+              </div>
+            </div>
+          )}
 
         </div>
 
