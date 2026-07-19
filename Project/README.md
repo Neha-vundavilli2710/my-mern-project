@@ -1,4 +1,4 @@
-# 🥗 Nutri-Assist — Nutrition Assistant
+# 🥗 Nutrition Assistant
 
 A full-stack **MERN** (MongoDB, Express.js, React, Node.js) wellness management application. Nutri-Assist helps users track their BMI, manage a personal health profile, plan weekly meals, monitor estimated nutrition intake, and receive personalized diet recommendations — with a role-based admin panel for oversight.
 
